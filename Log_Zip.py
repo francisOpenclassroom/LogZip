@@ -25,7 +25,45 @@ print()
 path_in = str((dic["path_in"]).replace("\\","/"))
 path_out = str((dic["path_out"]).replace("\\","/"))
 doctype = dic["doctype"]
-direxists = dic["direxists"]
+config = dic["config"]
+taille = dic["taille"]
+print(config)
+
+if  os.path.exists(path_out):
+    direxists="oui"
+else:
+    direxists="non"
+
+# print(direxists)
+
+
+if direxists == "oui" and config == "oui":
+    print("utilisation du dossier d'archives : ".format(path_out))
+
+elif direxists == "oui" and config == "non":
+
+    est_sur = True
+    while est_sur:
+                sur = input("Le dossier {} existe déjà, \nêtes vous sur de vouloir utiliser ce dossier ? ".format(path_out))
+                sur = sur.lower()
+                if sur == "n":
+                    print("on quite")
+                    quit()
+                elif sur == "o":
+                    est_sur = False
+                else:
+                    print(chr(27)+'[2j')
+                    print("Quitter : n , accepter : o")
+
+
+
+
+elif direxists == "non":
+    creation_dossier = input("le dossier {} n'existe pas, souhaitez vous le créer ? ".format(path_out))
+    print("creation du dossier d'achives : {}".format(path_out))
+
+
+
 
 for (path, root, files) in os.walk(path_in):
     nbre = 0
