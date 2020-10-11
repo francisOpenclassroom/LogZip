@@ -28,6 +28,7 @@ doctype = dic["doctype"]
 config = dic["config"]
 taille = dic["taille"]
 
+
 if not os.path.exists(path_in):
     print("le répertoire source n'existe pas ")
     quit()
@@ -99,9 +100,12 @@ for (path, root, files) in os.walk(path_in):
                 fichier_in =(path_in + "/" + file)
                 file_out = (file[:-3] + "zip")
                 chemin_out = path_out + "/" + file_out
-                print(fichier_in.replace("/","\\") +  " --> " + chemin_out.replace("/","\\"))
-                with zipfile.ZipFile(chemin_out,"w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as Zip:
-                    Zip.write(fichier_in)
+                print("config = ",int(taille)*1024)
+                print("taille du fichier = ", os.stat(fichier_in).st_size)
+                if os.stat(fichier_in).st_size > int(taille)*1024:
+                    print(fichier_in.replace("/","\\") +  " --> " + chemin_out.replace("/","\\"))
+                    with zipfile.ZipFile(chemin_out,"w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as Zip:
+                        Zip.write(fichier_in)
 #                 os.remove(chemin_in)
 
 
