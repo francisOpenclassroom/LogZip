@@ -20,15 +20,16 @@ print()
 print("Les fichiers .log présents dans le dossier {} seront archivés dans le dossier {}".format(dic["path_in"], dic["path_out"]))
 
 chemin = str((dic["path_in"]))
-print("le chemin est : " + chemin)
+# print("le chemin est : " + chemin)
 for (path, root, files) in os.walk("e:\Logs"):
-    print(files)
-
+    # print(files)
+    nbre = 0
     for file in files:
         if files:
 
             if ".log" in file:
-                print(file)
+                nbre += 1
+                print("le fichier {} sera traité ".format(file))
 #                 chemin_in =(path + "/" + file)
 #                 file_out = (file[:-3] + "zip")
 #                 chemin_out = path + "/Logs_archives/" + file_out
