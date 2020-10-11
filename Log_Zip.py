@@ -6,6 +6,7 @@ dic = {}
 
 """ LogZip """
 
+# Paramêtrage des répertoires de travail avec un fichier config.ini
 print()
 print("Utilisation du fichier " + local + "\config.ini")
 fichier_conf = local + "\config.ini"
