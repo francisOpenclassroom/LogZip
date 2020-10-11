@@ -6,6 +6,15 @@ dic = {}
 
 """ LogZip """
 
+def config_file():
+    fic_conf = open(fichier_conf, "rt")
+    contenu = fic_conf.read()
+    contenu = contenu.replace("non", "oui")
+    fic_conf.close()
+    fic_conf = open(fichier_conf, "wt")
+    fic_conf.write(contenu)
+    fic_conf.close()
+
 # Paramêtrage des répertoires de travail avec un fichier config.ini
 print()
 
@@ -58,13 +67,7 @@ elif direxists == "oui" and config == "non":
                 elif sur == "o":
                     est_sur = False
                     if config == "non":
-                        fic_conf = open(fichier_conf, "rt")
-                        contenu = fic_conf.read()
-                        contenu = contenu.replace("non", "oui")
-                        fic_conf.close()
-                        fic_conf = open(fichier_conf, "wt")
-                        fic_conf.write(contenu)
-                        fic_conf.close()
+                        config_file()
                 else:
                     print("Quitter : n , accepter : o")
 
@@ -82,13 +85,7 @@ elif direxists == "non":
             print("creation du dossier : {}".format(path_out).replace("/","\\"))
             os.mkdir(path_out.replace("/","\\"))
             if config == "non":
-                fic_conf = open(fichier_conf,"rt")
-                contenu = fic_conf.read()
-                contenu = contenu.replace("non","oui")
-                fic_conf.close()
-                fic_conf = open(fichier_conf,"wt")
-                fic_conf.write(contenu)
-                fic_conf.close()
+                config_file()
         else:
             print("Quitter : n , accepter : o")
 
@@ -97,24 +94,27 @@ elif direxists == "non":
 
 
 taille = int(taille)*1000000
-
+nbre = 0
 for (path, root, files) in os.walk(path_in):
-    nbre = 0
+
     for file in files:
         if files:
 
             if doctype in file:
-                nbre += 1
+
                 fichier_in =(path_in + "/" + file)
                 file_out = (file[:-3] + "zip")
                 chemin_out = path_out + "/" + file_out
                 if os.stat(fichier_in).st_size > int(taille):
                     print(fichier_in.replace("/","\\") +  " --> " + chemin_out.replace("/","\\"))
+                    size_in = os.stat(fichier_in).st_size
+                    nbre += 1
                     with zipfile.ZipFile(chemin_out,"w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as Zip:
                         Zip.write(fichier_in)
+                    size_out = os.stat(chemin_out).st_size
                     os.remove(fichier_in)
 
-
+print(nbre, " Fichier(s) traités")
 
 
 
