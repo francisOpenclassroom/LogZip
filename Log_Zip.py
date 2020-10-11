@@ -57,6 +57,14 @@ elif direxists == "oui" and config == "non":
                     quit()
                 elif sur == "o":
                     est_sur = False
+                    if config == "non":
+                        fic_conf = open(fichier_conf, "rt")
+                        contenu = fic_conf.read()
+                        contenu = contenu.replace("non", "oui")
+                        fic_conf.close()
+                        fic_conf = open(fichier_conf, "wt")
+                        fic_conf.write(contenu)
+                        fic_conf.close()
                 else:
                     print("Quitter : n , accepter : o")
 
@@ -88,7 +96,7 @@ elif direxists == "non":
 
 
 
-
+taille = int(taille)*1000000
 
 for (path, root, files) in os.walk(path_in):
     nbre = 0
@@ -100,13 +108,11 @@ for (path, root, files) in os.walk(path_in):
                 fichier_in =(path_in + "/" + file)
                 file_out = (file[:-3] + "zip")
                 chemin_out = path_out + "/" + file_out
-                print("config = ",int(taille)*1024)
-                print("taille du fichier = ", os.stat(fichier_in).st_size)
-                if os.stat(fichier_in).st_size > int(taille)*1024:
+                if os.stat(fichier_in).st_size > int(taille):
                     print(fichier_in.replace("/","\\") +  " --> " + chemin_out.replace("/","\\"))
                     with zipfile.ZipFile(chemin_out,"w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as Zip:
                         Zip.write(fichier_in)
-#                 os.remove(chemin_in)
+                    os.remove(fichier_in)
 
 
 
