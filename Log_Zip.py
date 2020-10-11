@@ -17,11 +17,13 @@ with open(fichier_conf,"r") as conf:
         dic[key] = valeur
         dic.update(dic)
 print()
-print("Les fichiers .log présents dans le dossier {} seront archivés dans le dossier {}".format(dic["path_in"], dic["path_out"]))
+# print("Les fichiers .log présents dans le dossier {} seront archivés dans le dossier {}".format(dic["path_in"], dic["path_out"]))
 
-chemin = str((dic["path_in"]))
-# print("le chemin est : " + chemin)
-for (path, root, files) in os.walk("e:\Logs"):
+path_in = str((dic["path_in"]).replace("\\","/"))
+
+# print("le chemin est : " + path_in)
+
+for (path, root, files) in os.walk(path_in):
     # print(files)
     nbre = 0
     for file in files:
@@ -29,14 +31,15 @@ for (path, root, files) in os.walk("e:\Logs"):
 
             if ".log" in file:
                 nbre += 1
-                print("le fichier {} sera traité ".format(file))
-#                 chemin_in =(path + "/" + file)
-#                 file_out = (file[:-3] + "zip")
-#                 chemin_out = path + "/Logs_archives/" + file_out
-#                 print(chemin_in +  " --> " + chemin_out)
-#                 with zipfile.ZipFile(chemin_out,"w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as Zip:
-#                     Zip.write(chemin_in)
-#                 print(chemin_in)
+                # print("le fichier {} sera traité ".format(file))
+                fichier_in =(path_in + "/" + file)
+                # print(fichier_in)
+                file_out = (file[:-3] + "zip")
+                # print(file_out)
+                chemin_out = path + "/Logs_archives/" + file_out
+                print(fichier_in +  " --> " + chemin_out)
+                with zipfile.ZipFile(chemin_out,"w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as Zip:
+                    Zip.write(fichier_in)
 #                 os.remove(chemin_in)
 
 
