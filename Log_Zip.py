@@ -1,8 +1,10 @@
 import os
 import zipfile
-
 local = (os.getcwd())
 dic = {}
+
+
+""" LogZip """
 
 print()
 print("Utilisation du fichier " + local + "\config.ini")
