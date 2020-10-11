@@ -1,12 +1,34 @@
 import os
 import zipfile
+import sys
+
+# variables
 local = (os.getcwd())
 dic = {}
+
+#  détection de l'os pour la syntaxe des chemins de fichiers
+print(sys.platform)
 
 
 """ LogZip """
 
+# Fonction de gestion du fichier config.ini
+
 def config_file():
+
+    """ Fonction de gestion du fichier config.ini
+        Le fichier config.ini contient les informations
+        de configurations :
+        Ne pas mettre d'espace ou de guillemets autour des valeurs
+
+        path_in=e:\Logs                 -> le chemin des fichiers sources
+        path_out=e:\Logs\Logs_archives  -> le chemin du dossier cible
+        doctype=.log                    -> l'extension des fichiers à traiter
+        config=oui                      -> si "oui" le programme a déjà été lancé et est configuré
+                                        -> si "non" il s'agit d'une première exécution
+        taille=1                        -> la taille minimale des fichiers à traiter en Mo
+
+         """
     fic_conf = open(fichier_conf, "rt")
     contenu = fic_conf.read()
     contenu = contenu.replace("non", "oui")
@@ -16,8 +38,6 @@ def config_file():
     fic_conf.close()
 
 # Paramêtrage des répertoires de travail avec un fichier config.ini
-print()
-
 
 fichier_conf = local + "/config.ini"
 
@@ -42,27 +62,19 @@ if not os.path.exists(path_in):
     print("le répertoire source n'existe pas ")
     quit()
 
+format_dos = path_out.replace("/","\\")
 
+if os.path.exists(path_out) and config == "oui":
+    print("utilisation du dossier d'archives : {} ".format(format_dos))
 
-if  os.path.exists(path_out):
-    direxists="oui"
-else:
-    direxists="non"
-
-# print(direxists)
-
-
-if direxists == "oui" and config == "oui":
-    print("utilisation du dossier d'archives : {} ".format(path_out).replace("/","\\"))
-
-elif direxists == "oui" and config == "non":
+elif os.path.exists(path_out) and config == "non":
 
     est_sur = True
     while est_sur:
-                sur = input("Le dossier {} existe déjà, \nêtes vous sur de vouloir utiliser ce dossier ? ".format(path_out).replace("/","\\"))
+                sur = input("Le dossier {} existe déjà, \nêtes vous sur de vouloir utiliser ce dossier ? ".format(format_dos))
                 sur = sur.lower()
                 if sur == "n":
-                    print("on quitte")
+                    print("programme arreté par l'utilisateur")
                     quit()
                 elif sur == "o":
                     est_sur = False
@@ -72,7 +84,7 @@ elif direxists == "oui" and config == "non":
                     print("Quitter : n , accepter : o")
 
 
-elif direxists == "non":
+elif not os.path.exists(path_out):
     est_sur = True
     while est_sur:
         creation_dossier = input("le dossier {} n'existe pas, souhaitez vous le créer ? ".format(path_out))
@@ -82,8 +94,8 @@ elif direxists == "non":
             quit()
         elif creation_dossier == "o":
             est_sur = False
-            print("creation du dossier : {}".format(path_out).replace("/","\\"))
-            os.mkdir(path_out.replace("/","\\"))
+            print("creation du dossier : {}".format(format_dos))
+            os.mkdir(format_dos)
             if config == "non":
                 config_file()
         else:
@@ -111,10 +123,12 @@ for (path, root, files) in os.walk(path_in):
                     nbre += 1
                     with zipfile.ZipFile(chemin_out,"w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as Zip:
                         Zip.write(fichier_in)
-                    size_out = os.stat(chemin_out).st_size
                     os.remove(fichier_in)
-
-print(nbre, " Fichier(s) traités")
+if nbre <= 1:
+    print(nbre, " Fichier traité")
+else:
+    print(nbre, " Fichiers traités")
+# help(config_file)
 
 
 
