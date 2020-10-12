@@ -19,7 +19,7 @@ def config_file():
     """ Fonction de gestion du fichier config.ini
         Le fichier config.ini contient les informations
         de configurations :
-        Ne pas mettre d'espace ou de guillemets autour des valeurs
+        (Ne pas mettre d'espace ou de guillemets autour des valeurs)
 
         path_in=e:\Logs                 -> le chemin des fichiers sources
         path_out=e:\Logs\Logs_archives  -> le chemin du dossier cible
@@ -37,9 +37,29 @@ def config_file():
     fic_conf.write(contenu)
     fic_conf.close()
 
-# Paramêtrage des répertoires de travail avec un fichier config.ini
+def CreationConfig():
+
+    fic_conf = open(fichier_conf, "rt")
+    contenu = fic_conf.read()
+    contenu = contenu.replace("non", "oui")
+    fic_conf.close()
+    fic_conf = open(fichier_conf, "wt")
+    fic_conf.write(contenu)
+    fic_conf.close()
+
 
 fichier_conf = local + "/config.ini"
+
+if not os.path.isfile(fichier_conf):
+    print("le fichier de configuration est absent ou invalide")
+    print("Exécution du module de configuration")
+    quit()
+
+
+
+# Paramêtrage des répertoires de travail avec un fichier config.ini
+
+
 
 
 with open(fichier_conf,"r") as conf:
