@@ -37,7 +37,7 @@ def config_file():
     fic_conf.write(contenu)
     fic_conf.close()
 
-# Paramêtrage des répertoires de travail avec un fichier config.ini
+# Paramêtrage des répertoires de travail a l'aide un fichier config.ini
 
 fichier_conf = local + "/config.ini"
 
