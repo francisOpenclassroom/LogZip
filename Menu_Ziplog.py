@@ -32,13 +32,12 @@ class Application(tk.Tk):
 
     def opendir_in(self):
         self.entree2 = filedialog.askdirectory()
-        print(self.entree2)
-        # self.entree=self.entry_in.insert(0,"")
+        self.entry_in.delete(0,256)
         self.entree = self.entry_in.insert(0, self.entree2)
-        print(self.entree)
 
     def opendir_out(self):
         self.sortie2 = filedialog.askdirectory()
+        self.entry_out.delete(0,256)
         self.sortie = self.entry_out.insert(0, self.sortie2)
 
     def get_entry_in(self):
@@ -65,7 +64,7 @@ class Application(tk.Tk):
     def creer_widgets(self):
         self.entry_in = tk.Entry(self,width=60)
         self.entry_in.grid(row=0, column=1)
-        # self.entry_in.insert(0,self.entree)
+        self.entry_in.insert(0,self.entree)
 
         self.entry_out = tk.Entry(self,width =60)
         self.entry_out.grid(row=1, column=1)
@@ -94,7 +93,9 @@ class Application(tk.Tk):
         self.label_sauv = tk.Label(self, text="Sauver la configuration :")
         self.label_sauv.grid(row=5, column=0, sticky="w")
         self.checked = self.var.get()
-        self.sauv_config = tk.Checkbutton(self, variable=self.var)
+        print(self.checked)
+        texte = "mode auto, il sera nécessaire d'éditer le fichier conf.ini"
+        self.sauv_config = tk.Checkbutton(self, variable=self.var,text=texte)
         self.sauv_config.grid(row=5, column=1, sticky="w")
 
 

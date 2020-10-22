@@ -39,7 +39,7 @@ class LectureConfig:
 class CreationFichierConf:
     def __init__(self):
         contenu = "path_in="+app.entree+"\npath_out="+app.sortie+"\ndoctype="+app.doctype+"\ntaille="+app.seuil+"\nconfig="+app.checked
-        # print(contenu)
+        print(contenu)
         conf = open(fichier_conf,"w")
         conf.write(contenu)
         conf.close()
@@ -59,8 +59,9 @@ class Traitement:
 
         for (path,root,files) in os.walk(self.path_in):
             for file in files:
-                print(files)
-                # print(self.taille)
+                pass
+                print(file)
+
 
 
 
@@ -84,7 +85,7 @@ if not os.path.exists(fichier_conf):
 
 
 else:
-    LectureConfig(fichier_conf)
+    # LectureConfig(fichier_conf)
     lecture = LectureConfig(fichier_conf)
     # print("lecture path_in ="+lecture.path_in)
     if lecture.config == "non":
@@ -92,9 +93,13 @@ else:
         app = Application(lecture.path_in,lecture.path_out,lecture.taille,lecture.doctype)
         # print(lecture.path_in,lecture.path_out,lecture.taille,lecture.doctype)
         app.title("ZipLog")
-        # print(app.entree,app.sortie,app.doctype,app.seuil,app.checked)
+        # print("app="+app.entree,app.sortie,app.doctype,app.seuil,app.checked)
         app.mainloop()
-        Traitement(lecture.path_in,lecture.path_out,lecture.doctype,lecture.taille)
+        print("app=" + app.entree, app.sortie, app.doctype, app.seuil, app.checked)
+        CreationFichierConf()
+        Traitement(app.entree,app.sortie,app.doctype,app.seuil)
+    else:
+        Traitement(lecture.path_in,lecture.path_out,lecture.taille,lecture.doctype)
 
 # print(app.entree,app.checked)
 # app=Application()
