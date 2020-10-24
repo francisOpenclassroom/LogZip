@@ -69,7 +69,7 @@ class Traitement:
                 if len(dossiers) > 0:
                     long_ext = -abs(len(self.doctype))
                     if self.doctype in file[long_ext:]:
-                        seuil= float(os.stat(path+"/"+file).st_size/1000000)
+                        seuil = float(os.stat(path + "/" + file).st_size/1000000)
                         seuil = "{:.2f}".format(seuil)
                         print(path+"/"+file+" "+str(seuil)+" Mo")
                         print()
@@ -80,16 +80,11 @@ class Traitement:
                             fichier_out = (file[:long_ext] + "zip")
                             chemin_out = self.path_out + "/" + fichier_out
                             print(chemin_out)
-                            with zipfile.ZipFile(chemin_out,"w", compression=zipfile.ZIP_STORED, compresslevel=9) as Zip:
+                            with zipfile.ZipFile(chemin_out, "w", compression=zipfile.ZIP_STORED, compresslevel=9) as Zip:
                                 Zip.write(fichier_in)
                             nbre += 1
 
-
-
-
         print(str(nbre) + " Fichiers trouvés")
-
-
 
 
 if not os.path.exists(fichier_conf):
