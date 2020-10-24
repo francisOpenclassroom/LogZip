@@ -1,5 +1,4 @@
 from tkinter import filedialog
-from tkinter import messagebox
 from tkinter import *
 
 root = Tk()
@@ -7,6 +6,7 @@ root.title("ZipLogGui")
 root.geometry("580x300")
 
 # t = Principale(root, "l'entréé", "la sortie", 10, "log", "oui")
+
 
 class Principale:
     def __init__(self, master, entree, sortie, taille, doctype, config):
@@ -24,9 +24,10 @@ class Principale:
         self.entree2 = "testentree2"
         self.valeur = "------------------------"
         self.param = ""
-        self.liste_valeur = ["CONFIGURATION ACTUELLE : ", self.entree, self.sortie, self.taille, self.doctype, self.config]
+        self.liste_valeur = ["CONFIGURATION ACTUELLE : ", self.entree, self.sortie, self.taille
+            , self.doctype, self.config]
         self.liste_param = ["", "Dossier Source: ", "Dossier Cible: ", "Taille en Mo: ", "Extension: "
-            ,"Sauvegarde Config: "]
+            , "Sauvegarde Config: "]
         self.color = "white"
 
         self.label_source = Label(master, text="Dossier source :")
@@ -69,8 +70,8 @@ class Principale:
         self.bouton_applique = Button(master, text="Appliquer", bd=4, activebackground="green"
                                     , command=lambda: self.maframe.quit())
         self.label_result_valeur = Label(master, text=self.valeur)
-        self.label_result_param = Label(master,text=self.param)
-        self.label_titre_result = Label(master,text="")
+        self.label_result_param = Label(master, text=self.param)
+        self.label_titre_result = Label(master, text="")
         self.state = DISABLED
 
     def opendir_in(self):
@@ -92,7 +93,7 @@ class Principale:
         self.config = self.var.get()
         self.maj_liste()
         self.affiche_resutlat()
-        self.state=NORMAL
+        self.state = NORMAL
         # self.maframe.quit()
 
     def maj_liste(self):
@@ -102,24 +103,22 @@ class Principale:
         self.liste_valeur[4] = self.doctype
         self.liste_valeur[5] = self.config
 
-
     def affiche_resutlat(self):
         i = 8
         y = 8
 
-
         for self.valeur in self.liste_valeur:
 
             self.label_result_valeur = Text(root, height=1, width=45, bg='grey', fg=self.color)
-            self.label_result_valeur.insert(INSERT,self.valeur)
+            self.label_result_valeur.insert(INSERT, self.valeur)
             self.label_result_valeur.configure(state=DISABLED)
-            self.label_result_valeur.grid(row=i,column=1,sticky="w")
+            self.label_result_valeur.grid(row=i, column=1, sticky="w")
             i += 1
 
         for self.param in self.liste_param:
             self.label_result_param = Label(root, text=self.param)
             self.label_result_param.grid_remove()
-            self.label_result_param.grid(row=y,column=0,sticky="w")
+            self.label_result_param.grid(row=y, column=0, sticky="w")
             y += 1
 
         self.bouton_valide.destroy()
@@ -130,38 +129,31 @@ class Principale:
     def etat_entrees(self):
         pass
 
-
     def mise_a_jour(self):
 
-        self.state =NORMAL
+        self.state = NORMAL
 
         self.entree = self.entry_in.get()
         self.entry_in.delete(0, END)
-        self.entry_in.insert(0,self.entree)
+        self.entry_in.insert(0, self.entree)
 
         self.sortie = self.entry_out.get()
         self.entry_out.delete(0, END)
-        self.entry_out.insert(0,self.sortie)
-
+        self.entry_out.insert(0, self.sortie)
 
         self.taille = self.entry_seuil.get()
-        self.entry_seuil.delete(0,END)
-        self.entry_seuil.insert(0,self.taille)
+        self.entry_seuil.delete(0, END)
+        self.entry_seuil.insert(0, self.taille)
 
         self.doctype = self.entry_doctype.get()
         self.entry_doctype.delete(0, END)
         self.entry_doctype.insert(0, self.doctype)
-
 
         self.config = self.var.get()
 
         self.maj_liste()
 
         self.affiche_resutlat()
-
-
-
-
 
 # t = Principale(root, "l'entréé", "la sortie", 10, "log", "non")
 
