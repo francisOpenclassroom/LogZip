@@ -150,11 +150,7 @@ class Principale:
             self.valide = "oui"
             self.colorfg = "white"
             self.colorbg = "grey"
-            self.bouton_applique.config(bg="#0d6305", state="normal",fg="white")
-
-        if self.config == "oui":
-            print("config auto")
-
+            self.bouton_applique.config(bg="#0d6305", state="normal", fg="white")
 
     def affiche_resutlat(self):
 
@@ -175,8 +171,6 @@ class Principale:
             self.label_result_param.grid_remove()
             self.label_result_param.grid(row=y, column=0, sticky="w")
             y += 1
-
-
 
         self.bouton_valide.destroy()
         self.bouton_maj.grid(row=5, column=2, sticky="e")
