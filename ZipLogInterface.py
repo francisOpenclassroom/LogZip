@@ -42,6 +42,8 @@ class Principale:
         self.colorbg_8 = "grey"
         self.tour = 0
         self.valide = "oui"
+        self.condition_1 = True
+        self.condition_2 = True
 
         self.label_source = Label(master, text="Dossier source :")
         self.label_source.grid(row=0, column=0, sticky="w")
@@ -127,7 +129,6 @@ class Principale:
 
     def maj_liste(self):
         self.param = [self.entree, self.sortie, self.taille, self.doctype, self.config]
-        print(self.liste_valeur)
 
         self.liste_valeur[1] = self.entree
         self.liste_valeur[2] = self.sortie
@@ -135,29 +136,65 @@ class Principale:
         self.liste_valeur[4] = self.doctype
         self.liste_valeur[5] = self.config
         if self.tour > 0:
-            self.liste_valeur[0] = "CONFIGURATION EDITEE :"
-        print(self.liste_param)
-        print(self.liste_valeur)
+            self.liste_valeur[0] = "CONFIGURATION VALIDE"
 
     def validation(self):
+
         if not self.taille.isdigit() or int(self.taille) < 1:
-            self.liste_valeur[0] = "X TAILLE INVALIDE ENTREZ UN NOMBRE ENTIER > 0 X"
+            self.liste_valeur[0] = "ERREUR DANS LA CONFIGURATION"
             self.colorfg = "white"
             self.colorbg = "#630505"
-            self.bouton_applique.config(bg="grey", state="disable")
-
-        else:
-            self.valide = "oui"
-            self.colorfg = "white"
-            self.colorbg = "grey"
+            self.liste_valeur[3] = "==> ENTREZ UN ENTIER > 0 <=="
+            self.bouton_applique.config(bg="#0d6305", state="disabled", fg="white")
+        else :
             self.bouton_applique.config(bg="#0d6305", state="normal", fg="white")
+
+
+        # if not os.path.exists(self.entree):
+        #
+        #     self.liste_valeur[0] = "ERREUR DANS LA CONFIGURATION"
+        #     self.colorfg = "white"
+        #     self.colorbg = "#630505"
+        #     self.liste_valeur[1] = "==> DOSSIER INVALIDE OU INEXISTANT <=="
+        #     self.bouton_applique.config(bg="#0d6305", state="disabled", fg="white")
+        #
+        # if not os.path.exists(self.sortie):
+        #     self.liste_valeur[0] = "ERREUR DANS LA CONFIGURATION"
+        #     self.colorfg = "white"
+        #     self.colorbg = "#630505"
+        #     self.liste_valeur[2] = "==> DOSSIER INVALIDE OU INEXISTANT <=="
+        #     self.bouton_applique.config(bg="#0d6305", state="disabled", fg="white")
+        #
+
+
+        # else:
+        #     self.condition_2 = True
+        #     self.condition_1 = True
+
+        # else:
+        #     self.valide = "oui"
+        #     self.colorfg = "white"
+        #     self.colorbg = "grey"
+        #     self.bouton_applique.config(bg="#0d6305", state="normal", fg="white")
+
+        # if not os.path.exists(self.sortie):
+        #     self.liste_valeur[0] = "ERREUR DANS LA CONFIGURATION"
+        #     self.colorfg = "white"
+        #     self.colorbg = "#630505"
+        #     self.liste_valeur[2] = "==> DOSSIER INVALIDE OU INEXISTANT <=="
+        #
+        # else:
+        #     self.valide = "oui"
+        #     self.colorfg = "white"
+        #     self.colorbg = "grey"
+        #     self.bouton_applique.config(bg="#0d6305", state="normal", fg="white")
+
 
     def affiche_resutlat(self):
 
         self.validation()
         i = 8
         y = 8
-
         for self.valeur in self.liste_valeur:
             self.text_result_valeur = Text(root, height=1, width=45, bg=self.colorbg, fg=self.colorfg)
             self.text_result_valeur.insert(INSERT, self.valeur)
@@ -165,6 +202,7 @@ class Principale:
             self.text_result_valeur.grid(row=i, column=1, sticky="w")
             self.text_result_valeur.config(bg=self.colorbg)
             i += 1
+
 
         for self.param in self.liste_param:
             self.label_result_param = Label(root, text=self.param)
@@ -176,6 +214,10 @@ class Principale:
         self.bouton_maj.grid(row=5, column=2, sticky="e")
         self.bouton_applique.grid(row=15, column=2, sticky="e")
         self.label_titre_result.grid(row=7, columnspan=3)
+        self.valide = "oui"
+        self.colorfg = "white"
+        self.colorbg = "grey"
+        # self.bouton_applique.config(bg="#0d6305", state="normal", fg="white")
 
     def etat_entrees(self):
         pass
