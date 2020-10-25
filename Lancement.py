@@ -119,8 +119,8 @@ class Traitement:
                             fichier_out = (file[:long_ext] + "zip")
                             chemin_out = self.path_out + "/" + fichier_out
                             print(chemin_out)
-                            with zipfile.ZipFile(chemin_out, "w"
-                                    , compression=zipfile.ZIP_STORED, compresslevel=9) as Zip:
+                            with zipfile.ZipFile(chemin_out, "w",
+                                                 compression=zipfile.ZIP_STORED, compresslevel=9) as Zip:
                                 Zip.write(fichier_in)
                             nbre += 1
 
@@ -131,15 +131,25 @@ class Traitement:
 if not os.path.exists(fichier_conf):
     p = Principale(root, "", "", "", "", "non")
     root.mainloop()
-    CreationFichierConf(p.entree, p.sortie, p.taille, p.doctype, p.config)
-    Traitement(p.entree, p.sortie, p.doctype, p.taille)
+    print(p.valide)
+    if p.valide == "oui":
+        CreationFichierConf(p.entree, p.sortie, p.taille, p.doctype, p.config)
+        Traitement(p.entree, p.sortie, p.doctype, p.taille)
+    else:
+        print("on quitte")
 else:
 
     lec = LectureConfig()
     if lec.config == "non":
         p = Principale(root, lec.path_in, lec.path_out, lec.taille, lec.doctype, lec.config)
         root.mainloop()
-        CreationFichierConf(p.entree, p.sortie, p.taille, p.doctype, p.config)
-        Traitement(p.entree, p.sortie, p.doctype, p.taille)
+        print(p.valide)
+        if p.valide == "oui":
+            CreationFichierConf(p.entree, p.sortie, p.taille, p.doctype, p.config)
+            Traitement(p.entree, p.sortie, p.doctype, p.taille)
+        else:
+            print("on quitte")
     else:
-        print("Config = oui")
+        print("Traitement automatique")
+        p = Principale(root, lec.path_in, lec.path_out, lec.taille, lec.doctype, lec.config)
+        Traitement(p.entree, p.sortie, p.doctype, p.taille)
