@@ -1,10 +1,13 @@
 from ZipLogInterface import *
 import os
 import zipfile
+import sys
 
 # déclaration des variables
 local = (os.getcwd())
 fichier_conf = str(local + "/conf.ini").replace("\\", "/")
+
+print(sys.argv[0])
 
 
 class CreationFichierConf:
@@ -114,13 +117,11 @@ class Traitement:
                         print()
 
                         if os.stat(path+"/"+file).st_size > int(self.taille):
-                            print("éligible :" + file)
                             fichier_in = (path+"/"+file)
                             fichier_out = (file[:long_ext] + "zip")
                             chemin_out = self.path_out + "/" + fichier_out
-                            print(chemin_out)
                             with zipfile.ZipFile(chemin_out, "w",
-                                                 compression=zipfile.ZIP_STORED, compresslevel=9) as Zip:
+                                                 compression=zipfile.ZIP_DEFLATED, compresslevel=9) as Zip:
                                 Zip.write(fichier_in)
                             nbre += 1
 
@@ -131,24 +132,22 @@ class Traitement:
 if not os.path.exists(fichier_conf):
     p = Principale(root, "", "", "", "", "non")
     root.mainloop()
-    print(p.valide)
     if p.valide == "oui":
         CreationFichierConf(p.entree, p.sortie, p.taille, p.doctype, p.config)
         Traitement(p.entree, p.sortie, p.doctype, p.taille)
     else:
-        print("on quitte")
+        print("Annulation par l'utilisateur")
 else:
 
     lec = LectureConfig()
     if lec.config == "non":
         p = Principale(root, lec.path_in, lec.path_out, lec.taille, lec.doctype, lec.config)
         root.mainloop()
-        print(p.valide)
         if p.valide == "oui":
             CreationFichierConf(p.entree, p.sortie, p.taille, p.doctype, p.config)
             Traitement(p.entree, p.sortie, p.doctype, p.taille)
         else:
-            print("on quitte")
+            print("Annulation par l'utilisateur")
     else:
         print("Traitement automatique")
         p = Principale(root, lec.path_in, lec.path_out, lec.taille, lec.doctype, lec.config)

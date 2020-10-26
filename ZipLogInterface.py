@@ -20,6 +20,7 @@ class Principale:
         :param doctype: extension des fichiers à traiter
         :param config:  oui/non mode autonome sans GUI
         """
+        # Déclaration des variables
         self.maframe = Frame(master)
         self.maframe.grid()
         self.entree = entree
@@ -36,15 +37,16 @@ class Principale:
         self.param = ""
         self.liste_valeur = ["CONFIGURATION ACTUELLE : ", self.entree, self.sortie, self.taille,
                              self.doctype, self.config]
-        self.liste_param = ["", "Source: ", "Cible: ", "Taille en Mo: ", "Extension: ", "Execution automatique: "]
+        self.liste_param = ["", "Source: ", "Cible: ", "Taille en Mo: ", "Extension: ", "Exécution automatique: "]
         self.colorfg = "white"
         self.colorbg = "grey"
-        self.colorbg_8 = "grey"
         self.tour = 0
         self.valide = "oui"
-        self.condition_1 = True
-        self.condition_2 = True
+        self.c1 = True  # Condition 1
+        self.c2 = True  # Condition 2
+        self.c3 = True  # Condition 3
 
+        # Constuction de l'interface
         self.label_source = Label(master, text="Dossier source :")
         self.label_source.grid(row=0, column=0, sticky="w")
         self.entry_in = Entry(master, width=60)
@@ -69,7 +71,7 @@ class Principale:
         self.entry_doctype = Entry(master, width=4)
         self.entry_doctype.grid(row=4, column=1, sticky="w")
         self.entry_doctype.insert(0, self.doctype)
-        self.label_sauv = Label(master, text="Execution automatique :")
+        self.label_sauv = Label(master, text="Exécution automatique :")
         self.label_sauv.grid(row=5, column=0, sticky="w")
         self.sauv_config = Checkbutton(master, variable=self.var, offvalue="non", onvalue="oui")
         self.sauv_config.grid(row=5, column=1, sticky="w")
@@ -88,7 +90,7 @@ class Principale:
         self.label_titre_result = Label(master, text="")
         self.text_result_valeur = Text(root, height=1, width=45, bg='grey', fg=self.colorfg)
         self.state = DISABLED
-        root.protocol("WM_DELETE_WINDOW", self.annuler)
+        root.protocol("WM_DELETE_WINDOW", self.annuler)  # Interrompt l'exécution si fenetre fermée avec X
 
     def annuler(self):
         self.maframe.quit()
@@ -128,70 +130,66 @@ class Principale:
         self.state = NORMAL
 
     def maj_liste(self):
-        self.param = [self.entree, self.sortie, self.taille, self.doctype, self.config]
+        """
 
+        :return: Une liste contenant les valeurs de : entree, sortie, taille, doctype et config
+        """
+        self.param = [self.entree, self.sortie, self.taille, self.doctype, self.config]
         self.liste_valeur[1] = self.entree
         self.liste_valeur[2] = self.sortie
         self.liste_valeur[3] = self.taille
         self.liste_valeur[4] = self.doctype
         self.liste_valeur[5] = self.config
         if self.tour > 0:
-            self.liste_valeur[0] = "CONFIGURATION VALIDE"
+            self.liste_valeur[0] = "CONFIGURATION VALIDE"  # Change le titre de l'affichage après une validation
 
     def validation(self):
-
-        if not self.taille.isdigit() or int(self.taille) < 1:
+        """
+        Execute un test des entrées et change l'affichage en conséquences
+        :return: valeurs boolennes de validation des conditions des entrées
+        """
+        if not self.taille.isdigit() or int(self.taille) < 1:  # vérifie que la taille est un entier > 0
             self.liste_valeur[0] = "ERREUR DANS LA CONFIGURATION"
             self.colorfg = "white"
             self.colorbg = "#630505"
             self.liste_valeur[3] = "==> ENTREZ UN ENTIER > 0 <=="
             self.bouton_applique.config(bg="#0d6305", state="disabled", fg="white")
-        else :
+            self.c1 = False
+
+        if not os.path.exists(self.entree):  # vérifie que le dossier source existe
+            self.liste_valeur[0] = "ERREUR DANS LA CONFIGURATION"
+            self.colorfg = "white"
+            self.colorbg = "#630505"
+            self.liste_valeur[1] = "==> DOSSIER INVALIDE OU INEXISTANT <=="
+            self.bouton_applique.config(bg="#0d6305", state="disabled", fg="white")
+            self.c2 = False
+
+        if not os.path.exists(self.sortie):  # vérifie que le dossier cible existe
+            self.liste_valeur[0] = "ERREUR DANS LA CONFIGURATION"
+            self.colorfg = "white"
+            self.colorbg = "#630505"
+            self.liste_valeur[2] = "==> DOSSIER INVALIDE OU INEXISTANT <=="
+            self.bouton_applique.config(bg="#0d6305", state="disabled", fg="white")
+            self.c3 = False
+
+        if self.liste_valeur[5] == "oui":
+            self.colorfg = "white"
+            self.liste_valeur[5] = " OUI = MODE AUTONOME"
+            self.colorbg = "#42a7f5"
             self.bouton_applique.config(bg="#0d6305", state="normal", fg="white")
-
-
-        # if not os.path.exists(self.entree):
-        #
-        #     self.liste_valeur[0] = "ERREUR DANS LA CONFIGURATION"
-        #     self.colorfg = "white"
-        #     self.colorbg = "#630505"
-        #     self.liste_valeur[1] = "==> DOSSIER INVALIDE OU INEXISTANT <=="
-        #     self.bouton_applique.config(bg="#0d6305", state="disabled", fg="white")
-        #
-        # if not os.path.exists(self.sortie):
-        #     self.liste_valeur[0] = "ERREUR DANS LA CONFIGURATION"
-        #     self.colorfg = "white"
-        #     self.colorbg = "#630505"
-        #     self.liste_valeur[2] = "==> DOSSIER INVALIDE OU INEXISTANT <=="
-        #     self.bouton_applique.config(bg="#0d6305", state="disabled", fg="white")
-        #
-
-
-        # else:
-        #     self.condition_2 = True
-        #     self.condition_1 = True
-
-        # else:
-        #     self.valide = "oui"
-        #     self.colorfg = "white"
-        #     self.colorbg = "grey"
-        #     self.bouton_applique.config(bg="#0d6305", state="normal", fg="white")
-
-        # if not os.path.exists(self.sortie):
-        #     self.liste_valeur[0] = "ERREUR DANS LA CONFIGURATION"
-        #     self.colorfg = "white"
-        #     self.colorbg = "#630505"
-        #     self.liste_valeur[2] = "==> DOSSIER INVALIDE OU INEXISTANT <=="
-        #
-        # else:
-        #     self.valide = "oui"
-        #     self.colorfg = "white"
-        #     self.colorbg = "grey"
-        #     self.bouton_applique.config(bg="#0d6305", state="normal", fg="white")
-
+            if not self.c1 or not self.c2 or not self.c3:  # vérifie que les 3 conditions précédentes sont vraies
+                print("au moins un parametre est invalie")
+                self.colorfg = "white"
+                self.colorbg = "#630505"
+                self.bouton_applique.config(bg="#0d6305", state="disabled", fg="white")
+            else:
+                self.bouton_applique.config(bg="#0d6305", state="normal", fg="white")
 
     def affiche_resutlat(self):
+        """
 
+        :return: Affiche le résultat de la configuration
+        """
         self.validation()
         i = 8
         y = 8
@@ -203,7 +201,6 @@ class Principale:
             self.text_result_valeur.config(bg=self.colorbg)
             i += 1
 
-
         for self.param in self.liste_param:
             self.label_result_param = Label(root, text=self.param)
             self.label_result_param.grid_remove()
@@ -214,15 +211,12 @@ class Principale:
         self.bouton_maj.grid(row=5, column=2, sticky="e")
         self.bouton_applique.grid(row=15, column=2, sticky="e")
         self.label_titre_result.grid(row=7, columnspan=3)
-        self.valide = "oui"
-        self.colorfg = "white"
-        self.colorbg = "grey"
-        # self.bouton_applique.config(bg="#0d6305", state="normal", fg="white")
-
-    def etat_entrees(self):
-        pass
 
     def mise_a_jour(self):
+        """
+
+        :return:    self.entree, self.sortie, self.taille, self.doctype, self.config par une méthode get
+        """
 
         self.entree = self.entry_in.get()
         self.entry_in.delete(0, END)
@@ -243,14 +237,11 @@ class Principale:
         self.config = self.var.get()
 
         self.maj_liste()
+        self.colorfg = "white"
+        self.colorbg = "grey"
+        self.bouton_applique.config(bg="#0d6305", state="normal", fg="white")
+        self.c1 = True
+        self.c2 = True
+        self.c3 = True
 
         self.affiche_resutlat()
-
-# t = Principale(root, "l'entréé", "la sortie", 10, "log", "non")
-
-# root.mainloop()
-# root.destroy()
-
-
-# print("entree= " + t.entree, "sortie= " + t.sortie, "taille= "+str(t.taille), "Extension= "
-#       + t.doctype, "config= "+t.config)
