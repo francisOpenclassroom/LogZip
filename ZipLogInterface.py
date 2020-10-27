@@ -45,8 +45,9 @@ class Principale:
         self.c1 = True  # Condition 1
         self.c2 = True  # Condition 2
         self.c3 = True  # Condition 3
+        self.c4 = True  # Condition 3
 
-        # Constuction de l'interface
+        # Construction de l'interface graphique
         self.label_source = Label(master, text="Dossier source :")
         self.label_source.grid(row=0, column=0, sticky="w")
         self.entry_in = Entry(master, width=60)
@@ -85,7 +86,7 @@ class Principale:
                                     command=self.annuler)
         self.bouton_annule.grid(row=5, column=1, sticky="e")
         self.bouton_applique = Button(master, text="Exécuter", bd=4, activebackground="green",
-                                      bg="white", command=lambda: self.maframe.quit())
+                                      bg="#0d6305", command=lambda: self.maframe.quit())
         self.label_result_param = Label(master, text=self.param)
         self.label_titre_result = Label(master, text="")
         self.text_result_valeur = Text(root, height=1, width=45, bg='grey', fg=self.colorfg)
@@ -172,12 +173,21 @@ class Principale:
             self.bouton_applique.config(bg="#0d6305", state="disabled", fg="white")
             self.c3 = False
 
+        if self.doctype == "":
+            print("pas d'extension")
+            self.liste_valeur[0] = "ERREUR DANS LA CONFIGURATION"
+            self.colorfg = "white"
+            self.colorbg = "#630505"
+            self.liste_valeur[4] = "==> VEUILLEZ ENTRER UNE EXTESION <=="
+            self.bouton_applique.config(bg="#0d6305", state="disabled", fg="white")
+            self.c4 = False
+
         if self.liste_valeur[5] == "oui":
             self.colorfg = "white"
             self.liste_valeur[5] = " OUI = MODE AUTONOME"
             self.colorbg = "#42a7f5"
             self.bouton_applique.config(bg="#0d6305", state="normal", fg="white")
-            if not self.c1 or not self.c2 or not self.c3:  # vérifie que les 3 conditions précédentes sont vraies
+            if not self.c1 or not self.c2 or not self.c3 or not self.c4:  # vérifie que les 4 conditions sont vraies
                 print("au moins un parametre est invalie")
                 self.colorfg = "white"
                 self.colorbg = "#630505"
@@ -243,5 +253,6 @@ class Principale:
         self.c1 = True
         self.c2 = True
         self.c3 = True
+        self.c4 = True
 
         self.affiche_resutlat()

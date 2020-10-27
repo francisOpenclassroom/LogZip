@@ -2,12 +2,13 @@ from ZipLogInterface import *
 import os
 import zipfile
 import sys
+import datetime
 
 # déclaration des variables
 local = (os.getcwd())
 fichier_conf = str(local + "/conf.ini").replace("\\", "/")
-
-print(sys.argv[0])
+ts = str(datetime.datetime.now())
+ts = "_" + ts[0:10] + "_" + ts[11:13] + ts[14:16] + ts[17:19]
 
 
 class CreationFichierConf:
@@ -114,11 +115,10 @@ class Traitement:
                         seuil = float(os.stat(path + "/" + file).st_size/1000000)
                         seuil = "{:.2f}".format(seuil)
                         print(path+"/"+file+" "+str(seuil)+" Mo")
-                        print()
 
                         if os.stat(path+"/"+file).st_size > int(self.taille):
                             fichier_in = (path+"/"+file)
-                            fichier_out = (file[:long_ext] + "zip")
+                            fichier_out = (file[:(long_ext - 1)] + ts + ".zip")
                             chemin_out = self.path_out + "/" + fichier_out
                             with zipfile.ZipFile(chemin_out, "w",
                                                  compression=zipfile.ZIP_DEFLATED, compresslevel=9) as Zip:
@@ -127,6 +127,16 @@ class Traitement:
 
         print(str(nbre) + " Fichiers trouvés")
 
+
+if len(sys.argv) > 1:
+    if sys.argv[1] == "-reset":
+        print("Configuration initialisée")
+        while True:
+            try:
+                os.remove(fichier_conf)
+                quit()
+            except FileNotFoundError:
+                quit()
 
 # test de l'existence des fichiers pour déterminer quel module doit être exécuté
 if not os.path.exists(fichier_conf):
