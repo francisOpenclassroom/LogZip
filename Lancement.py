@@ -91,10 +91,14 @@ class FichierLog:
         self.ladate = ts[1:11]
         self.fic_journal = open(self.path_in + "/_Ziplog.log", "a")
         self.nbre = nbre
+        self.bas_de_page = ""
 
     def entete(self):
 
         self.fic_journal.write("\n")
+        # self.bas_de_page = (self.ladate + self.nbre + " Fichiers traités\n")
+        # print(self.nbre)
+        # print(len(self.bas_de_page))
         self.fic_journal.write(self.ladate + self.nbre + " Fichiers traités\n")
         self.fic_journal.write("-------------------\n")
 
@@ -108,8 +112,10 @@ class FichierLog:
 
     def nbre(self):
         self.fic_journal.write("\n")
+        self.bas_de_page = ("{} : {} Fichiers traités\n".format(self.ladate, self.nbre, self.pourcent))
+        print(len(self.bas_de_page))
         self.fic_journal.write("{} : {} Fichiers traités\n".format(self.ladate, self.nbre, self.pourcent))
-        self.fic_journal.write("-------------------\n")
+        self.fic_journal.write("-" * len(self.bas_de_page) + "\n")
 
 
 class Traitement:
@@ -163,8 +169,6 @@ class Traitement:
                             file_out = fichier_out + " " + str(taille_out) + " Mo"
                             pourcentage = 100 - float(taille_out) / float(taille_in) * 100
                             pourcentage = "{:.2f}".format(pourcentage)
-                            print(pourcentage)
-                            print(taille_out)
                             log = FichierLog(path, file_in, file_out, nbre, pourcentage)
                             FichierLog.loggin_fl(log)
         e = FichierLog(self.path_in, "", "", str(nbre), "")
