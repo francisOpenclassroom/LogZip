@@ -96,10 +96,7 @@ class FichierLog:
     def entete(self):
 
         self.fic_journal.write("\n")
-        # self.bas_de_page = (self.ladate + self.nbre + " Fichiers traités\n")
-        # print(self.nbre)
-        # print(len(self.bas_de_page))
-        self.fic_journal.write(self.ladate + self.nbre + " Fichiers traités\n")
+        self.fic_journal.write(self.ladate + self.nbre + " Fichier(s) traité(s)\n")
         self.fic_journal.write("-------------------\n")
 
     def loggin_fl(self):
@@ -114,7 +111,10 @@ class FichierLog:
         self.fic_journal.write("\n")
         self.bas_de_page = ("{} : {} Fichiers traités\n".format(self.ladate, self.nbre, self.pourcent))
         print(len(self.bas_de_page))
-        self.fic_journal.write("{} : {} Fichiers traités\n".format(self.ladate, self.nbre, self.pourcent))
+        if int(self.nbre) > 1:
+            self.fic_journal.write("{} : {} Fichiers traités\n".format(self.ladate, self.nbre, self.pourcent))
+        else:
+            self.fic_journal.write("{} : {} Fichier traité\n".format(self.ladate, self.nbre, self.pourcent))
         self.fic_journal.write("-" * len(self.bas_de_page) + "\n")
 
 
