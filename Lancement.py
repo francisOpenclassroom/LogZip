@@ -81,6 +81,37 @@ class LectureConfig:
         self.taille = str((dic["taille"]))
 
 
+class FichierLog:
+    def __init__(self, path_in, file_in, file_out, nbre, pourcent):
+
+        self.pourcent = pourcent
+        self.file_in = file_in
+        self.file_out = file_out
+        self.path_in = path_in
+        self.ladate = ts[1:11]
+        self.fic_journal = open(self.path_in + "/_Ziplog.log", "a")
+        self.nbre = nbre
+
+    def entete(self):
+
+        self.fic_journal.write("\n")
+        self.fic_journal.write(self.ladate + self.nbre + " Fichiers traités\n")
+        self.fic_journal.write("-------------------\n")
+
+    def loggin_fl(self):
+        self.file_in = self.file_in
+        self.file_out = self.file_out
+
+        self.fic_journal.write("{} --> {} ({}%)\n".format(self.file_in, self.file_out, self.pourcent))
+        self.fic_journal.write("")
+        self.fic_journal.close()
+
+    def nbre(self):
+        self.fic_journal.write("\n")
+        self.fic_journal.write("{} : {} Fichiers traités\n".format(self.ladate, self.nbre, self.pourcent))
+        self.fic_journal.write("-------------------\n")
+
+
 class Traitement:
     """
     Classe de traitement des fichiers selon les paramètres de configuration
@@ -107,24 +138,37 @@ class Traitement:
         nbre = 0
         self.taille = int(self.taille) * 1000000
         for (path, dossiers, files) in os.walk(self.path_in):
+            # e = FichierLog(path, "", "", "")
+            # FichierLog.entete(e)
 
             for file in files:
                 if len(dossiers) > 0:
                     long_ext = -abs(len(self.doctype))
                     if self.doctype in file[long_ext:]:
-                        seuil = float(os.stat(path + "/" + file).st_size/1000000)
-                        seuil = "{:.2f}".format(seuil)
-                        print(path+"/"+file+" "+str(seuil)+" Mo")
+                        taille_in = float(os.stat(path + "/" + file).st_size/1000000)
+                        taille_in = "{:.2f}".format(taille_in)
+                        file_in = (file+" "+str(taille_in)+" Mo")
 
                         if os.stat(path+"/"+file).st_size > int(self.taille):
                             fichier_in = (path+"/"+file)
-                            fichier_out = (file[:(long_ext - 1)] + ts + ".zip")
+                            fichier_out = (file[:(long_ext - 1)] + ts[0:11] + ".zip")
+
                             chemin_out = self.path_out + "/" + fichier_out
                             with zipfile.ZipFile(chemin_out, "w",
                                                  compression=zipfile.ZIP_DEFLATED, compresslevel=9) as Zip:
                                 Zip.write(fichier_in)
                             nbre += 1
-
+                            taille_out = float(os.stat(chemin_out).st_size / 1000000)
+                            taille_out = "{:.2f}".format(taille_out)
+                            file_out = fichier_out + " " + str(taille_out) + " Mo"
+                            pourcentage = 100 - float(taille_out) / float(taille_in) * 100
+                            pourcentage = "{:.2f}".format(pourcentage)
+                            print(pourcentage)
+                            print(taille_out)
+                            log = FichierLog(path, file_in, file_out, nbre, pourcentage)
+                            FichierLog.loggin_fl(log)
+        e = FichierLog(self.path_in, "", "", str(nbre), "")
+        FichierLog.nbre(e)
         print(str(nbre) + " Fichiers trouvés")
 
 
