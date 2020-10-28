@@ -4,7 +4,7 @@ import os
 
 root = Tk()
 root.title("ZipLogGui")
-root.geometry("650x400")
+root.geometry("800x400")
 
 
 class Principale:
