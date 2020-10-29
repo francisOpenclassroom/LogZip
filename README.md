@@ -18,9 +18,16 @@ Ce script Python a pour fonction d'automatiser la gestion des fichiers journeaux
 Les technologies utilisées pour développer ce script sont : Python 3.8.5 et Pycharm IDE 2020.2
 L'interface graphique est construite avec le module Tkinter.
 
+Lien vers Python : https://www.python.org/
+
+Lien vers Pycharam : https://www.jetbrains.com/fr-fr/pycharm/
+
+Lien vers tkinter : https://docs.python.org/fr/3/library/tk.html
+
 # Installation
 
 Une version de Python 3 est nécessaire pour exécuter ce script, copier les fichiers lancement.py et ZipLogInterface.py dans un dossier. Les fichiers sont téléchargeables à l'adresse : https://github.com/francisOpenclassroom/LogZip.git
+
 
 # Utilisation
 
