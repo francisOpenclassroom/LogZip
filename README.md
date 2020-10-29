@@ -19,4 +19,4 @@ L'interface graphique est construite avec le module Tkinter.
 
 # Installation
 
-Une version de Python 3 est nécessaire pour exécuter ce script, copier les fichiers lancement.py et ZipLogInterface.py dans un dossier. Les fichiers sont téléchargeables à l'adresse : 
+Une version de Python 3 est nécessaire pour exécuter ce script, copier les fichiers lancement.py et ZipLogInterface.py dans un dossier. Les fichiers sont téléchargeables à l'adresse : https://github.com/francisOpenclassroom/LogZip.git
