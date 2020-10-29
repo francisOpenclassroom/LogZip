@@ -63,3 +63,5 @@ L'interface principale permet de configurer les options d'entrée, sortie, la ta
 Le bouton Modifier permet d'appliquer la configuration, si des erreurs sont détectées, un message contextuel permet de repérer la donnée entrée erronée :
 
 
+
+
