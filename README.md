@@ -60,7 +60,9 @@ L'interface principale permet de configurer les options d'entrée, sortie, la ta
 
 ![image](https://user-images.githubusercontent.com/72203692/97609270-ac28fc00-1a13-11eb-8fff-297ef39a11e7.png)
 
-Le bouton Modifier permet d'appliquer la configuration, si des erreurs sont détectées, un message contextuel permet de repérer la donnée entrée erronée :
+Le bouton Modifier permet d'appliquer la configuration, si des erreurs sont détectées, un message contextuel permet de repérer la donnée entrée erronée et l'éxecution du programme n'est pas possible tant que les erreurs ne sont pas corrigées, le bouton exécuter reste inactif :
+
+![image](https://user-images.githubusercontent.com/72203692/97610031-a849a980-1a14-11eb-8a56-0fb55ac6bd3b.png)
 
 
 
