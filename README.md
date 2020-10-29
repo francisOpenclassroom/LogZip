@@ -26,7 +26,7 @@ Une version de Python 3 est nécessaire pour exécuter ce script, copier les fic
 
 pour lancer le progranmme :
 
-#### python lancement.py
+`python lancement.py`
 
 La première exécution du script affiche l'interface graphique de configuration :
 
@@ -42,6 +42,6 @@ La première exécution du script affiche l'interface graphique de configuration
 
 - Pour réinitialiser la configuration, et afficher le menu à nouveau, la syntaxe est la suivante :
 
-#### lancement.py -reset
+`python lancement.py -reset`
 
 - Un fichier _ZipLog.log est créé dans le dossier source, il contient la journalisation de l'activité du programme.
