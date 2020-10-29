@@ -5,6 +5,7 @@
 1. [Description]
 2. [Technos]
 3. [Installation]
+4. [Utilisation]
 
 # Description :
 
@@ -20,3 +21,26 @@ L'interface graphique est construite avec le module Tkinter.
 # Installation
 
 Une version de Python 3 est nécessaire pour exécuter ce script, copier les fichiers lancement.py et ZipLogInterface.py dans un dossier. Les fichiers sont téléchargeables à l'adresse : https://github.com/francisOpenclassroom/LogZip.git
+
+# Utilisation
+
+pour lancer le progranmme :
+
+#### python lancement.py
+
+La première exécution du script affiche l'interface graphique de configuration :
+
+- Le Dossier source est l'emplacement où se trouvent les fichiers à compresser.
+
+- Le Dossier cible est l'empcement ou seront stockés les fichiers compressés
+
+- La taille en Mo est le seuil à partir duquel les fichiers seront compressés dans le dossier cible et supprimés du dossier source
+
+- L'extension est l'extension des fichiers (.log, .txt..., sans le '.' à traiter 
+
+- L'exécution automatique permet de ne plus afficher l'interface graphique au prochain lancement permettant ainsi d'exécuter le programmme à partir d'un tâche planifiée.
+(pour réinitialiser la configuration la syntaxe est la suivante :
+
+#### lancement.py -reset
+
+- Un fichier _ZipLog.log est créé dans le dossier source, il contient la journalisation de l'activité du programme.
