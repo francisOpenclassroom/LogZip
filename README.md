@@ -6,6 +6,7 @@
 2. [Technos]
 3. [Installation]
 4. [Utilisation]
+5. [Fonctionalités]
 
 # Description :
 
@@ -52,3 +53,7 @@ La première exécution du script affiche l'interface graphique de configuration
 `python lancement.py -reset`
 
 - Un fichier _ZipLog.log est créé dans le dossier source, il contient la journalisation de l'activité du programme.
+
+# Fonctionnalités 
+
+L'interface principale permet de configurer les options d'entrée, sortie, la taille, l'extension ainsi que la possibilité d'une exécution silencieuse :
