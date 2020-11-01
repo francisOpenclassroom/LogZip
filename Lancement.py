@@ -151,24 +151,13 @@ class RotationFic:
             self.nom_de_fichier = self.nom_de_fichier + ".zip"
             print("lefichier sera sauvegardé sous: " + self.path + "/" + self.nom_de_fichier)
 
-        if 0 < len(self.list_fic) < self.retention:
+        if 0 < len(self.list_fic):
             self.indice = str(len(self.list_fic))
             print("le fichier sera sauvegardé sous: " + self.nom_de_fichier + "_" + str(self.indice) + ".zip")
-            self.nom_de_fichier = self.nom_de_fichier + "_" + str(self.indice) + ".zip"
-
-        if len(self.list_fic) == self.retention:
-            print("la boucle est bouclée")
-            nom = dic.get(str(self.retention - 1))
-            # print("le fichier: " + self.path + "/" + nom + " est supprimé ")
-            os.remove(self.path + "/" + nom)
-
-            for n in range(self.retention, 1, -1):
-                name_in = dic.get(str(n - 2))
-                name_out = dic.get(str(n - 1))
-                # print("{} ---> {}".format(name_in, name_out))
-                shutil.move(self.path + "/" + name_in, self.path + "/" + name_out)
-            print("ecriture de " + dic.get(str(0)))
-            # print(nom_de_fichier + ".zip")
+            for y in range(len(self.list_fic), 0, -1):
+                fic_in = (self.path + "/" + self.list_fic[y-1])
+                fic_out = (self.path + "/" + self.nom_de_fichier + "_" + str(y) + ".zip")
+                shutil.move(fic_in, fic_out)
             self.nom_de_fichier = self.nom_de_fichier + ".zip"
 
 
@@ -224,6 +213,7 @@ class Traitement:
                             RotationFic.presence_fichier(r, fichier_out, self.path_out)
                             # print("r.nom de fichier = " + r.nom_de_fichier)
                             chemin_out = self.path_out + "/" + r.nom_de_fichier
+                            print("chemin out = " + chemin_out)
                             with zipfile.ZipFile(chemin_out, "w",
                                                  compression=zipfile.ZIP_DEFLATED, compresslevel=9) as Zip:
                                 Zip.write(fichier_in)
