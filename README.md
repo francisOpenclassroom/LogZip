@@ -7,7 +7,7 @@
 # 3. [Installation]
 # 4. [Utilisation]
 # 5. [Fonctionalités]
-# 6. [Auteur]
+# [Auteur]
 # 7. [Licence]
 
 # Description :
