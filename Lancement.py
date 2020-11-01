@@ -5,7 +5,7 @@ import sys
 import datetime
 import shutil
 
-# déclaration des variables
+# déclaration des variables prg principal
 local = (os.getcwd())
 fichier_conf = str(local + "/conf.ini").replace("\\", "/")
 ts = str(datetime.datetime.now())
@@ -17,7 +17,7 @@ class CreationFichierConf:
     Classe de création et d'écriture du fichier de configuration
 
     """
-    def __init__(self, entree, sortie, taille, doctype, config):
+    def __init__(self, entree, sortie, taille, doctype, config, rotation):
         """
         :param entree: Dossier d'entrée des fichiers à compresser
         :param sortie: Dossier de sortie des fichiers compressés
@@ -31,8 +31,9 @@ class CreationFichierConf:
         self.taille = taille
         self.doctype = doctype
         self.config = config
+        self.rotation = rotation
         contenu = "path_in="+self.entree+"\npath_out="+self.sortie+"\ndoctype="+self.doctype+"\ntaille="\
-                  + self.taille+"\nconfig=" + self.config
+                  + self.taille+"\nconfig=" + self.config + "\nrotation=" + self.rotation
         conf = open(self.fichier_conf, "w")
         conf.write(contenu)
         conf.close()
@@ -54,6 +55,7 @@ class LectureConfig:
         self.config = "Vide"
         self.doctype = "Vide"
         self.taille = "Vide"
+        self.rotation = "Vide"
         self.lecture_fichier()
 
     def lecture_fichier(self):
@@ -80,6 +82,8 @@ class LectureConfig:
         self.doctype = str((dic["doctype"]))
         self.config = str((dic["config"]))
         self.taille = str((dic["taille"]))
+        self.rotation = str((dic["rotation"]))
+        print(self.rotation)
 
 
 class FichierLog:
@@ -111,7 +115,7 @@ class FichierLog:
     def nbre(self):
         self.fic_journal.write("\n")
         self.bas_de_page = ("{} : {} Fichiers traités\n".format(self.ladate, self.nbre, self.pourcent))
-        print(len(self.bas_de_page))
+        # print(len(self.bas_de_page))
         if int(self.nbre) > 1:
             self.fic_journal.write("{} : {} Fichiers traités\n".format(self.ladate, self.nbre, self.pourcent))
         else:
@@ -136,12 +140,12 @@ class RotationFic:
         dic = {"0": self.nom_de_fichier + ".zip"}
         for x in range(1, self.retention):
             dic["{0}".format(x)] = self.nom_de_fichier + "_{}.zip".format(x)
-        print(dic)
+        # print(dic)
         for key, valeur in dic.items():
 
             if os.path.exists(self.path + "/" + valeur):  # permet de vérifier l'existence des fichiers
                 self.list_fic.append(valeur)
-        print(len(self.list_fic))
+        # print(len(self.list_fic))
 
         if len(self.list_fic) == 0:
             print("première version")
@@ -150,22 +154,22 @@ class RotationFic:
 
         if 0 < len(self.list_fic) < self.retention:
             self.indice = str(len(self.list_fic))
-            print("lefichier sera sauvegardé sous: " + self.nom_de_fichier + "_" + str(self.indice) + ".zip")
+            print("le fichier sera sauvegardé sous: " + self.nom_de_fichier + "_" + str(self.indice) + ".zip")
             self.nom_de_fichier = self.nom_de_fichier + "_" + str(self.indice) + ".zip"
 
         if len(self.list_fic) == self.retention:
             print("la boucle est bouclée")
             nom = dic.get(str(self.retention - 1))
-            print("le fichier: " + self.path + "/" + nom + " est supprimé ")
+            # print("le fichier: " + self.path + "/" + nom + " est supprimé ")
             os.remove(self.path + "/" + nom)
 
             for n in range(self.retention, 1, -1):
                 name_in = dic.get(str(n - 2))
                 name_out = dic.get(str(n - 1))
-                print("{} ---> {}".format(name_in, name_out))
+                # print("{} ---> {}".format(name_in, name_out))
                 shutil.move(self.path + "/" + name_in, self.path + "/" + name_out)
             print("ecriture de " + dic.get(str(0)))
-            print(nom_de_fichier + ".zip")
+            # print(nom_de_fichier + ".zip")
             self.nom_de_fichier = self.nom_de_fichier + ".zip"
 
 
@@ -173,7 +177,7 @@ class Traitement:
     """
     Classe de traitement des fichiers selon les paramètres de configuration
     """
-    def __init__(self, path_in, path_out, doctype, taille):
+    def __init__(self, path_in, path_out, doctype, taille, rotation):
         """
         Mise en variable des valeurs
         :param path_in:     Dossier source
@@ -185,13 +189,17 @@ class Traitement:
         self.path_out = path_out
         self.doctype = doctype
         self.taille = taille
+        self.rotation = rotation
         self.zipit()
+
+        print("dans la classe Traitement : " + self.rotation)
 
     def zipit(self):
         """
         :return: compression des fichiers avec le module Zipfile
         """
 
+        print("dans la fonction : " + str(self.rotation))
         nbre = 0
         self.taille = int(self.taille) * 1000000
         for (path, dossiers, files) in os.walk(self.path_in):
@@ -210,11 +218,12 @@ class Traitement:
                             fichier_in = (path+"/"+file)
                             fichier_out = (file[:(long_ext - 1)])
 
-                            chemin_out = self.path_out + "/" + fichier_out
-                            print(chemin_out)
-                            r = RotationFic(10)
+                            # chemin_out = self.path_out + "/" + fichier_out
+                            # print(chemin_out)
+                            # print("dans le traitement = " + self.rotation)
+                            r = RotationFic(int(self.rotation))
                             RotationFic.presence_fichier(r, fichier_out, self.path_out)
-                            print("r.nom de fichier = " + r.nom_de_fichier)
+                            # print("r.nom de fichier = " + r.nom_de_fichier)
                             chemin_out = self.path_out + "/" + r.nom_de_fichier
                             with zipfile.ZipFile(chemin_out, "w",
                                                  compression=zipfile.ZIP_DEFLATED, compresslevel=9) as Zip:
@@ -227,10 +236,10 @@ class Traitement:
                             pourcentage = "{:.2f}".format(pourcentage)
                             log = FichierLog(path, file_in, file_out, nbre, pourcentage)
                             FichierLog.loggin_fl(log)
-        print(self.path_in)
+        # print(self.path_in)
         e = FichierLog(self.path_in, "", "", str(nbre), "")
         FichierLog.nbre(e)
-        print(str(nbre) + " Fichiers trouvés")
+        print(str(nbre) + " Fichiers --- trouvés")
 
 
 if len(sys.argv) > 1:
@@ -245,25 +254,26 @@ if len(sys.argv) > 1:
 
 # test de l'existence des fichiers pour déterminer quel module doit être exécuté
 if not os.path.exists(fichier_conf):
-    p = Principale(root, "", "", "", "", "non")
+    p = Principale(root, "", "", "", "", "non", 2)
     root.mainloop()
     if p.valide == "oui":
-        CreationFichierConf(p.entree, p.sortie, p.taille, p.doctype, p.config)
-        Traitement(p.entree, p.sortie, p.doctype, p.taille)
+
+        CreationFichierConf(p.entree, p.sortie, p.taille, p.doctype, p.config, p.rotation)
+        Traitement(p.entree, p.sortie, p.doctype, p.taille, p.rotation)
     else:
         print("Annulation par l'utilisateur")
 else:
 
     lec = LectureConfig()
     if lec.config == "non":
-        p = Principale(root, lec.path_in, lec.path_out, lec.taille, lec.doctype, lec.config)
+        p = Principale(root, lec.path_in, lec.path_out, lec.taille, lec.doctype, lec.config, lec.rotation)
         root.mainloop()
         if p.valide == "oui":
-            CreationFichierConf(p.entree, p.sortie, p.taille, p.doctype, p.config)
-            Traitement(p.entree, p.sortie, p.doctype, p.taille)
+            CreationFichierConf(p.entree, p.sortie, p.taille, p.doctype, p.config, p.rotation)
+            Traitement(p.entree, p.sortie, p.doctype, p.taille, p.rotation)
         else:
             print("Annulation par l'utilisateur")
     else:
         print("Traitement automatique")
-        p = Principale(root, lec.path_in, lec.path_out, lec.taille, lec.doctype, lec.config)
-        Traitement(p.entree, p.sortie, p.doctype, p.taille)
+        p = Principale(root, lec.path_in, lec.path_out, lec.taille, lec.doctype, lec.config, lec.rotation)
+        Traitement(p.entree, p.sortie, p.doctype, p.taille, p.rotation)

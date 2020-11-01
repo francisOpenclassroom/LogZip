@@ -10,7 +10,7 @@ root.geometry("800x400")
 class Principale:
     """Classe principale de l'interface graphipe"""
 
-    def __init__(self, master, entree, sortie, taille, doctype, config):
+    def __init__(self, master, entree, sortie, taille, doctype, config, rotation):
         """
 
         :param master:  root tkinter
@@ -33,6 +33,7 @@ class Principale:
         self.var.set(config)
         self.config = config
         self.entree2 = ""
+        self.rotation = rotation
         self.valeur = ""
         self.param = ""
         self.liste_valeur = ["CONFIGURATION ACTUELLE : ", self.entree, self.sortie, self.taille,
@@ -76,6 +77,11 @@ class Principale:
         self.label_sauv.grid(row=5, column=0, sticky="w")
         self.sauv_config = Checkbutton(master, variable=self.var, offvalue="non", onvalue="oui")
         self.sauv_config.grid(row=5, column=1, sticky="w")
+        self.label_rotation = Label(master, text="Nombre de rotation :")
+        self.label_rotation.grid(row=6, column=0, sticky="w")
+        self.entry_rotation = Entry(master, width=4)
+        self.entry_rotation.grid(row=6, column=1, sticky="w")
+        self.entry_rotation.insert(0, self.rotation)
         self.bouton_valide = Button(master, text="Appliquer", bd=4, activebackground="green",
                                     bg="white", command=self.get_entry_in)
         self.bouton_valide.grid(row=5, column=2, sticky="e")
