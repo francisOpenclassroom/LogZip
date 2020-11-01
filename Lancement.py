@@ -3,6 +3,7 @@ import os
 import zipfile
 import sys
 import datetime
+import shutil
 
 # déclaration des variables
 local = (os.getcwd())
@@ -118,6 +119,56 @@ class FichierLog:
         self.fic_journal.write("-" * len(self.bas_de_page) + "\n")
 
 
+class RotationFic:
+    def __init__(self, retention):
+        self.nom_de_fichier = ""
+        self.nouveau_nom_in = ""
+        self.nouveau_nom_out = ""
+        self.indice = 1
+        self.retention = retention
+        self.list_fic = []
+        self.path = ""
+
+    def presence_fichier(self, nom_de_fichier, path):
+        self.nom_de_fichier = nom_de_fichier
+        self.path = path
+
+        dic = {"0": self.nom_de_fichier + ".zip"}
+        for x in range(1, self.retention):
+            dic["{0}".format(x)] = self.nom_de_fichier + "_{}.zip".format(x)
+        print(dic)
+        for key, valeur in dic.items():
+
+            if os.path.exists(self.path + "/" + valeur):  # permet de vérifier l'existence des fichiers
+                self.list_fic.append(valeur)
+        print(len(self.list_fic))
+
+        if len(self.list_fic) == 0:
+            print("première version")
+            self.nom_de_fichier = self.nom_de_fichier + ".zip"
+            print("lefichier sera sauvegardé sous: " + self.path + "/" + self.nom_de_fichier)
+
+        if 0 < len(self.list_fic) < self.retention:
+            self.indice = str(len(self.list_fic))
+            print("lefichier sera sauvegardé sous: " + self.nom_de_fichier + "_" + str(self.indice) + ".zip")
+            self.nom_de_fichier = self.nom_de_fichier + "_" + str(self.indice) + ".zip"
+
+        if len(self.list_fic) == self.retention:
+            print("la boucle est bouclée")
+            nom = dic.get(str(self.retention - 1))
+            print("le fichier: " + self.path + "/" + nom + " est supprimé ")
+            os.remove(self.path + "/" + nom)
+
+            for n in range(self.retention, 1, -1):
+                name_in = dic.get(str(n - 2))
+                name_out = dic.get(str(n - 1))
+                print("{} ---> {}".format(name_in, name_out))
+                shutil.move(self.path + "/" + name_in, self.path + "/" + name_out)
+            print("ecriture de " + dic.get(str(0)))
+            print(nom_de_fichier + ".zip")
+            self.nom_de_fichier = self.nom_de_fichier + ".zip"
+
+
 class Traitement:
     """
     Classe de traitement des fichiers selon les paramètres de configuration
@@ -157,9 +208,14 @@ class Traitement:
 
                         if os.stat(path+"/"+file).st_size > int(self.taille):
                             fichier_in = (path+"/"+file)
-                            fichier_out = (file[:(long_ext - 1)] + ts[0:11] + ".zip")
+                            fichier_out = (file[:(long_ext - 1)])
 
                             chemin_out = self.path_out + "/" + fichier_out
+                            print(chemin_out)
+                            r = RotationFic(10)
+                            RotationFic.presence_fichier(r, fichier_out, self.path_out)
+                            print("r.nom de fichier = " + r.nom_de_fichier)
+                            chemin_out = self.path_out + "/" + r.nom_de_fichier
                             with zipfile.ZipFile(chemin_out, "w",
                                                  compression=zipfile.ZIP_DEFLATED, compresslevel=9) as Zip:
                                 Zip.write(fichier_in)
@@ -171,6 +227,7 @@ class Traitement:
                             pourcentage = "{:.2f}".format(pourcentage)
                             log = FichierLog(path, file_in, file_out, nbre, pourcentage)
                             FichierLog.loggin_fl(log)
+        print(self.path_in)
         e = FichierLog(self.path_in, "", "", str(nbre), "")
         FichierLog.nbre(e)
         print(str(nbre) + " Fichiers trouvés")
