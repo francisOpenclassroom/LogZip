@@ -37,16 +37,18 @@ class Principale:
         self.valeur = ""
         self.param = ""
         self.liste_valeur = ["CONFIGURATION ACTUELLE : ", self.entree, self.sortie, self.taille,
-                             self.doctype, self.config]
-        self.liste_param = ["", "Source: ", "Cible: ", "Taille en Mo: ", "Extension: ", "Exécution automatique: "]
+                             self.doctype, self.config, self.rotation]
+        self.liste_param = ["", "Source: ", "Cible: ", "Taille en Mo: ", "Extension: ", "Exécution automatique: ",
+                            "Rotations:"]
         self.colorfg = "white"
         self.colorbg = "grey"
         self.tour = 0
         self.valide = "oui"
-        self.c1 = True  # Condition 1
+        self.c1 = True  # Condition 1 - La taille est un entier
         self.c2 = True  # Condition 2
         self.c3 = True  # Condition 3
-        self.c4 = True  # Condition 3
+        self.c4 = True  # Condition 3 -
+        self.c5 = True  # Condition 4 - Rotation est un entier
 
         # Construction de l'interface graphique
         self.label_source = Label(master, text="Dossier source :")
@@ -77,7 +79,7 @@ class Principale:
         self.label_sauv.grid(row=5, column=0, sticky="w")
         self.sauv_config = Checkbutton(master, variable=self.var, offvalue="non", onvalue="oui")
         self.sauv_config.grid(row=5, column=1, sticky="w")
-        self.label_rotation = Label(master, text="Nombre de rotation :")
+        self.label_rotation = Label(master, text="Nombre de rotations :")
         self.label_rotation.grid(row=6, column=0, sticky="w")
         self.entry_rotation = Entry(master, width=4)
         self.entry_rotation.grid(row=6, column=1, sticky="w")
@@ -123,30 +125,33 @@ class Principale:
     def get_entry_in(self):
         """
 
-        :return: retourne les varibales des widgets de saisie
+        :return: retourne les variables des widgets de saisie
         """
 
         self.entree = self.entry_in.get()
         self.sortie = self.entry_out.get()
         self.taille = self.entry_seuil.get()
         self.doctype = self.entry_doctype.get()
+        self.rotation = self.entry_rotation.get()
         self.config = self.var.get()
         self.maj_liste()
-        self.affiche_resutlat()
+        self.affiche_resultat()
         self.tour += 1
         self.state = NORMAL
+        print(self.rotation)
 
     def maj_liste(self):
         """
 
         :return: Une liste contenant les valeurs de : entree, sortie, taille, doctype et config
         """
-        self.param = [self.entree, self.sortie, self.taille, self.doctype, self.config]
+        self.param = [self.entree, self.sortie, self.taille, self.doctype, self.config, self.rotation]
         self.liste_valeur[1] = self.entree
         self.liste_valeur[2] = self.sortie
         self.liste_valeur[3] = self.taille
         self.liste_valeur[4] = self.doctype
         self.liste_valeur[5] = self.config
+        self.liste_valeur[6] = self.rotation
         if self.tour > 0:
             self.liste_valeur[0] = "CONFIGURATION VALIDE"  # Change le titre de l'affichage après une validation
 
@@ -155,6 +160,7 @@ class Principale:
         Execute un test des entrées et change l'affichage en conséquences
         :return: valeurs boolennes de validation des conditions des entrées
         """
+
         if not self.taille.isdigit() or int(self.taille) < 1:  # vérifie que la taille est un entier > 0
             self.liste_valeur[0] = "ERREUR DANS LA CONFIGURATION"
             self.colorfg = "white"
@@ -162,6 +168,14 @@ class Principale:
             self.liste_valeur[3] = "==> ENTREZ UN ENTIER > 0 <=="
             self.bouton_applique.config(bg="#0d6305", state="disabled", fg="white")
             self.c1 = False
+
+        if not self.rotation.isdigit() or int(self.rotation) < 1:
+            self.liste_valeur[0] = "ERREUR DANS LA CONFIGURATION"
+            self.colorfg = "white"
+            self.colorbg = "#630505"
+            self.liste_valeur[6] = "==> ENTREZ UN ENTIER > 0 <=="
+            self.bouton_applique.config(bg="#0d6305", state="disabled", fg="white")
+            self.c5 = False
 
         if not os.path.exists(self.entree):  # vérifie que le dossier source existe
             self.liste_valeur[0] = "ERREUR DANS LA CONFIGURATION"
@@ -184,7 +198,7 @@ class Principale:
             self.liste_valeur[0] = "ERREUR DANS LA CONFIGURATION"
             self.colorfg = "white"
             self.colorbg = "#630505"
-            self.liste_valeur[4] = "==> VEUILLEZ ENTRER UNE EXTESION <=="
+            self.liste_valeur[4] = "==> VEUILLEZ ENTRER UNE EXTENSION <=="
             self.bouton_applique.config(bg="#0d6305", state="disabled", fg="white")
             self.c4 = False
 
@@ -201,7 +215,7 @@ class Principale:
             else:
                 self.bouton_applique.config(bg="#0d6305", state="normal", fg="white")
 
-    def affiche_resutlat(self):
+    def affiche_resultat(self):
         """
 
         :return: Affiche le résultat de la configuration
@@ -250,6 +264,10 @@ class Principale:
         self.entry_doctype.delete(0, END)
         self.entry_doctype.insert(0, self.doctype)
 
+        self.rotation = self.entry_rotation.get()
+        self.entry_rotation.delete(0, END)
+        self.entry_rotation.insert(0, self.rotation)
+
         self.config = self.var.get()
 
         self.maj_liste()
@@ -261,4 +279,4 @@ class Principale:
         self.c3 = True
         self.c4 = True
 
-        self.affiche_resutlat()
+        self.affiche_resultat()

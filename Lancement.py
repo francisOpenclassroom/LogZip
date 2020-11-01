@@ -5,7 +5,7 @@ import sys
 import datetime
 import shutil
 
-# déclaration des variables prg principal
+# déclaration des variables du code principal
 local = (os.getcwd())
 fichier_conf = str(local + "/conf.ini").replace("\\", "/")
 ts = str(datetime.datetime.now())
@@ -83,7 +83,6 @@ class LectureConfig:
         self.config = str((dic["config"]))
         self.taille = str((dic["taille"]))
         self.rotation = str((dic["rotation"]))
-        print(self.rotation)
 
 
 class FichierLog:
