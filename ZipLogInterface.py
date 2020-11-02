@@ -144,7 +144,6 @@ class Principale:
 
     def maj_liste(self):
         """
-
         :return: Une liste contenant les valeurs de : entree, sortie, taille, doctype et config
         """
         self.param = [self.entree, self.sortie, self.taille, self.doctype, self.config, self.rotation]
@@ -159,7 +158,7 @@ class Principale:
 
     def validation(self):
         """
-        Execute un test des entrées et change l'affichage en conséquences
+        Execute un test des entrées et change l'affichage en conséquence
         :return: valeurs boolennes de validation des conditions des entrées
         """
 
@@ -217,7 +216,6 @@ class Principale:
 
     def affiche_resultat(self):
         """
-
         :return: Affiche le résultat de la configuration
         """
         self.validation()
@@ -244,7 +242,6 @@ class Principale:
 
     def mise_a_jour(self):
         """
-
         :return:    self.entree, self.sortie, self.taille, self.doctype, self.config par une méthode get
         """
 

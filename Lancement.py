@@ -86,7 +86,19 @@ class LectureConfig:
 
 
 class FichierLog:
+    """
+    Classe de création du fichier de log. Un fichier _Ziplog.log est généré
+    dans le dossier source et contient l'activité de l'archivage
+    """
     def __init__(self, path_in, file_in, file_out, nbre, pourcent):
+        """
+
+        :param path_in:     Dossier source
+        :param file_in:     Fichier source
+        :param file_out:    Fichier cible
+        :param nbre:        Nombre de fichiers traités
+        :param pourcent:    Pourcentage de compression
+        """
 
         self.pourcent = pourcent
         self.file_in = file_in
@@ -98,12 +110,17 @@ class FichierLog:
         self.bas_de_page = ""
 
     def entete(self):
-
+        """
+        :return: Affiche un résumé ainsi que la date
+        """
         self.fic_journal.write("\n")
         self.fic_journal.write(self.ladate + self.nbre + " Fichier(s) traité(s)\n")
         self.fic_journal.write("-------------------\n")
 
     def loggin_fl(self):
+        """
+        :return: Ecrit les inforamtions dans le fichier de log
+        """
         self.file_in = self.file_in
         self.file_out = self.file_out
 
@@ -112,6 +129,9 @@ class FichierLog:
         self.fic_journal.close()
 
     def nbre(self):
+        """
+        :return: Mise en forme du nombre de fichiers traités
+        """
         self.fic_journal.write("\n")
         self.bas_de_page = ("{} : {} Fichiers traités\n".format(self.ladate, self.nbre, self.pourcent))
         if int(self.nbre) > 1:
@@ -122,7 +142,14 @@ class FichierLog:
 
 
 class RotationFic:
+    """
+    Classe de rotation des fichiers log, un nombre de fichiers
+    correspondant à la valeur est sauvegardé plus le dernier fichier traité
+    """
     def __init__(self, retention):
+        """
+        :param retention: nombre de fichiers à conserver dans la rotation
+        """
         self.nom_de_fichier = ""
         self.nouveau_nom_in = ""
         self.nouveau_nom_out = ""
@@ -132,6 +159,14 @@ class RotationFic:
         self.path = ""
 
     def presence_fichier(self, nom_de_fichier, path):
+        """
+
+        :param nom_de_fichier: nom du fichier à traiter
+        :param path: chemin du fichier à traiter
+        :return: conditons permttant d'effectuer la rotation des versions
+        les fichiers sont copiés vers l'indice supérieur
+        en commençant par la fin pour éviter l'écrasement.
+        """
         self.nom_de_fichier = nom_de_fichier
         self.path = path
 
@@ -226,7 +261,7 @@ if len(sys.argv) > 1:
             except FileNotFoundError:
                 quit()
 
-# test de l'existence des fichiers pour déterminer quel module doit être exécuté
+# test de l'existence du fichier conf.ini pour déterminer quel module doit être exécuté
 if not os.path.exists(fichier_conf):
     p = Principale(root, "", "", "", "", "non", 2)
     root.mainloop()
