@@ -84,6 +84,9 @@ class Principale:
         self.entry_rotation = Entry(master, width=4)
         self.entry_rotation.grid(row=6, column=1, sticky="w")
         self.entry_rotation.insert(0, self.rotation)
+        self.bouton_aide = Button(master, text="?", bd=4, activebackground="green",
+                                  bg="grey", fg="white", command=lambda: os.startfile(os.getcwd() + "/aide_V1.html"))
+        self.bouton_aide.grid(row=5, column=5, sticky="e")
         self.bouton_valide = Button(master, text="Appliquer", bd=4, activebackground="green",
                                     bg="white", command=self.get_entry_in)
         self.bouton_valide.grid(row=5, column=2, sticky="e")
@@ -138,7 +141,6 @@ class Principale:
         self.affiche_resultat()
         self.tour += 1
         self.state = NORMAL
-        print(self.rotation)
 
     def maj_liste(self):
         """
@@ -194,7 +196,6 @@ class Principale:
             self.c3 = False
 
         if self.doctype == "":
-            print("pas d'extension")
             self.liste_valeur[0] = "ERREUR DANS LA CONFIGURATION"
             self.colorfg = "white"
             self.colorbg = "#630505"
@@ -208,7 +209,6 @@ class Principale:
             self.colorbg = "#42a7f5"
             self.bouton_applique.config(bg="#0d6305", state="normal", fg="white")
             if not self.c1 or not self.c2 or not self.c3 or not self.c4:  # vérifie que les 4 conditions sont vraies
-                print("au moins un parametre est invalie")
                 self.colorfg = "white"
                 self.colorbg = "#630505"
                 self.bouton_applique.config(bg="#0d6305", state="disabled", fg="white")

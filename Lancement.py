@@ -114,7 +114,6 @@ class FichierLog:
     def nbre(self):
         self.fic_journal.write("\n")
         self.bas_de_page = ("{} : {} Fichiers traités\n".format(self.ladate, self.nbre, self.pourcent))
-        # print(len(self.bas_de_page))
         if int(self.nbre) > 1:
             self.fic_journal.write("{} : {} Fichiers traités\n".format(self.ladate, self.nbre, self.pourcent))
         else:
@@ -139,21 +138,16 @@ class RotationFic:
         dic = {"0": self.nom_de_fichier + ".zip"}
         for x in range(1, self.retention):
             dic["{0}".format(x)] = self.nom_de_fichier + "_{}.zip".format(x)
-        # print(dic)
         for key, valeur in dic.items():
 
             if os.path.exists(self.path + "/" + valeur):  # permet de vérifier l'existence des fichiers
                 self.list_fic.append(valeur)
-        # print(len(self.list_fic))
 
         if len(self.list_fic) == 0:
-            print("première version")
             self.nom_de_fichier = self.nom_de_fichier + ".zip"
-            print("lefichier sera sauvegardé sous: " + self.path + "/" + self.nom_de_fichier)
 
         if 0 < len(self.list_fic):
             self.indice = str(len(self.list_fic))
-            print("le fichier sera sauvegardé sous: " + self.nom_de_fichier + "_" + str(self.indice) + ".zip")
             for y in range(len(self.list_fic), 0, -1):
                 fic_in = (self.path + "/" + self.list_fic[y-1])
                 fic_out = (self.path + "/" + self.nom_de_fichier + "_" + str(y) + ".zip")
@@ -180,14 +174,11 @@ class Traitement:
         self.rotation = rotation
         self.zipit()
 
-        print("dans la classe Traitement : " + self.rotation)
-
     def zipit(self):
         """
         :return: compression des fichiers avec le module Zipfile
         """
 
-        print("dans la fonction : " + str(self.rotation))
         nbre = 0
         self.taille = int(self.taille) * 1000000
         for (path, dossiers, files) in os.walk(self.path_in):
@@ -206,29 +197,23 @@ class Traitement:
                             fichier_in = (path+"/"+file)
                             fichier_out = (file[:(long_ext - 1)])
 
-                            # chemin_out = self.path_out + "/" + fichier_out
-                            # print(chemin_out)
-                            # print("dans le traitement = " + self.rotation)
                             r = RotationFic(int(self.rotation))
                             RotationFic.presence_fichier(r, fichier_out, self.path_out)
-                            # print("r.nom de fichier = " + r.nom_de_fichier)
                             chemin_out = self.path_out + "/" + r.nom_de_fichier
-                            print("chemin out = " + chemin_out)
                             with zipfile.ZipFile(chemin_out, "w",
                                                  compression=zipfile.ZIP_DEFLATED, compresslevel=9) as Zip:
                                 Zip.write(fichier_in)
                             nbre += 1
                             taille_out = float(os.stat(chemin_out).st_size / 1000000)
                             taille_out = "{:.2f}".format(taille_out)
-                            file_out = fichier_out + " " + str(taille_out) + " Mo"
+                            file_out = fichier_out + ".zip " + str(taille_out) + " Mo"
                             pourcentage = 100 - float(taille_out) / float(taille_in) * 100
                             pourcentage = "{:.2f}".format(pourcentage)
                             log = FichierLog(path, file_in, file_out, nbre, pourcentage)
                             FichierLog.loggin_fl(log)
-        # print(self.path_in)
+                            os.remove(fichier_in)
         e = FichierLog(self.path_in, "", "", str(nbre), "")
         FichierLog.nbre(e)
-        print(str(nbre) + " Fichiers --- trouvés")
 
 
 if len(sys.argv) > 1:
@@ -263,6 +248,5 @@ else:
         else:
             print("Annulation par l'utilisateur")
     else:
-        print("Traitement automatique")
         p = Principale(root, lec.path_in, lec.path_out, lec.taille, lec.doctype, lec.config, lec.rotation)
         Traitement(p.entree, p.sortie, p.doctype, p.taille, p.rotation)
