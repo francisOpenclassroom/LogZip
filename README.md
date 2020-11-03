@@ -71,7 +71,7 @@ _Pour réinitialiser la configuration, et afficher le menu à nouveau, la syntax
 
 `python lancement.py -reset`
 
-- Rotations est le nombre de versions de fichiers archivés à conserver, au minimum la version courante et une version archivée sont sauvegardé, valeur : 1.
+- Rotations est le nombre de versions de fichiers archivés à conserver, au minimum la version courante et une version archivée sont sauvegardés (valeur : 1).
 
 _<strong>Un fichier ZipLog.log est créé dans le dossier source, il contient la journalisation de l'activité du programme.</strong>_
 
