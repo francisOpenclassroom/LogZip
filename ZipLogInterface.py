@@ -8,7 +8,7 @@ root.geometry("800x400")
 
 
 class Principale:
-    """Classe principale de l'interface graphipe"""
+    """Classe principale de l'interface graphique"""
 
     def __init__(self, master, entree, sortie, taille, doctype, config, rotation):
         """
@@ -38,17 +38,17 @@ class Principale:
         self.param = ""
         self.liste_valeur = ["CONFIGURATION ACTUELLE : ", self.entree, self.sortie, self.taille,
                              self.doctype, self.config, self.rotation]
-        self.liste_param = ["", "Source: ", "Cible: ", "Taille en Mo: ", "Extension: ", "Exécution automatique: ",
-                            "Rotations:"]
+        self.liste_param = ["", "Source : ", "Cible : ", "Taille en Mo : ", "Extension : ", "Exécution automatique : ",
+                            "Rotations :"]
         self.colorfg = "white"
         self.colorbg = "grey"
         self.tour = 0
         self.valide = "oui"
-        self.c1 = True  # Condition 1 - La taille est un entier
-        self.c2 = True  # Condition 2
-        self.c3 = True  # Condition 3
-        self.c4 = True  # Condition 3 -
-        self.c5 = True  # Condition 4 - Rotation est un entier
+        self.c1 = True  # Condition 1 - La taille est un entier > 0
+        self.c2 = True  # Condition 2 - Dossier source existe
+        self.c3 = True  # Condition 3 - Dossier cible existe
+        self.c4 = True  # Condition 3 - Une extension est entrée
+        self.c5 = True  # Condition 4 - Rotation est un entier > 0
 
         # Construction de l'interface graphique
         self.label_source = Label(master, text="Dossier source :")
@@ -84,7 +84,7 @@ class Principale:
         self.entry_rotation = Entry(master, width=4)
         self.entry_rotation.grid(row=6, column=1, sticky="w")
         self.entry_rotation.insert(0, self.rotation)
-        self.bouton_aide = Button(master, text="?", bd=4, activebackground="green",
+        self.bouton_aide = Button(master, text=" ? ", bd=4, activebackground="green",
                                   bg="grey", fg="white", command=lambda: os.startfile(os.getcwd() + "/aide_V1.html"))
         self.bouton_aide.grid(row=5, column=5, sticky="e")
         self.bouton_valide = Button(master, text="Appliquer", bd=4, activebackground="green",
@@ -102,7 +102,7 @@ class Principale:
         self.label_titre_result = Label(master, text="")
         self.text_result_valeur = Text(root, height=1, width=45, bg='grey', fg=self.colorfg)
         self.state = DISABLED
-        root.protocol("WM_DELETE_WINDOW", self.annuler)  # Interrompt l'exécution si fenetre fermée avec X
+        root.protocol("WM_DELETE_WINDOW", self.annuler)  # Interrompt l'exécution si la fenetre est fermée avec X
 
     def annuler(self):
         self.maframe.quit()
@@ -140,7 +140,6 @@ class Principale:
         self.maj_liste()
         self.affiche_resultat()
         self.tour += 1
-        self.state = NORMAL
 
     def maj_liste(self):
         """
@@ -271,6 +270,7 @@ class Principale:
         self.colorfg = "white"
         self.colorbg = "grey"
         self.bouton_applique.config(bg="#0d6305", state="normal", fg="white")
+
         self.c1 = True
         self.c2 = True
         self.c3 = True

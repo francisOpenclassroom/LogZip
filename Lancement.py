@@ -47,7 +47,7 @@ class LectureConfig:
 
     def __init__(self):
         """
-
+        Déclaration des variables et lancement de la procédure de lecture du fichier conf.ini
         """
         self.fichier_conf = str(local + "/conf.ini").replace("\\", "/")
         self.path_in = "Vide"
@@ -76,7 +76,7 @@ class LectureConfig:
                 key, valeur = line.strip().split("=")
                 dic[key] = valeur
                 dic.update(dic)
-
+        # Les variables sont ajoutées à un dictionnaire
         self.path_in = str((dic["path_in"]))
         self.path_out = str((dic["path_out"]))
         self.doctype = str((dic["doctype"]))
@@ -119,7 +119,7 @@ class FichierLog:
 
     def loggin_fl(self):
         """
-        :return: Ecrit les inforamtions dans le fichier de log
+        :return: Ecriture des inforamtions dans le fichier de log
         """
         self.file_in = self.file_in
         self.file_out = self.file_out
@@ -130,7 +130,7 @@ class FichierLog:
 
     def nbre(self):
         """
-        :return: Mise en forme du nombre de fichiers traités
+        :return: Mise en forme du nombre de fichiers traités pour le fichier journal
         """
         self.fic_journal.write("\n")
         self.bas_de_page = ("{} : {} Fichiers traités\n".format(self.ladate, self.nbre, self.pourcent))
@@ -153,7 +153,6 @@ class RotationFic:
         self.nom_de_fichier = ""
         self.nouveau_nom_in = ""
         self.nouveau_nom_out = ""
-        self.indice = 1
         self.retention = retention
         self.list_fic = []
         self.path = ""
@@ -165,7 +164,7 @@ class RotationFic:
         :param path: chemin du fichier à traiter
         :return: conditons permttant d'effectuer la rotation des versions
         les fichiers sont copiés vers l'indice supérieur
-        en commençant par la fin pour éviter l'écrasement.
+        en commençant par la fin - 1 pour éviter l'écrasement.
         """
         self.nom_de_fichier = nom_de_fichier
         self.path = path
@@ -182,7 +181,6 @@ class RotationFic:
             self.nom_de_fichier = self.nom_de_fichier + ".zip"
 
         if 0 < len(self.list_fic):
-            self.indice = str(len(self.list_fic))
             for y in range(len(self.list_fic), 0, -1):
                 fic_in = (self.path + "/" + self.list_fic[y-1])
                 fic_out = (self.path + "/" + self.nom_de_fichier + "_" + str(y) + ".zip")
@@ -217,8 +215,6 @@ class Traitement:
         nbre = 0
         self.taille = int(self.taille) * 1000000
         for (path, dossiers, files) in os.walk(self.path_in):
-            # e = FichierLog(path, "", "", "")
-            # FichierLog.entete(e)
 
             for file in files:
                 if len(dossiers) > 0:
@@ -251,6 +247,7 @@ class Traitement:
         FichierLog.nbre(e)
 
 
+# reinitialisation si le programme est lancé avec l'option -reset -> Suppression du fichier conf.ini
 if len(sys.argv) > 1:
     if sys.argv[1] == "-reset":
         print("Configuration initialisée")
@@ -262,10 +259,12 @@ if len(sys.argv) > 1:
                 quit()
 
 # test de l'existence du fichier conf.ini pour déterminer quel module doit être exécuté
+
+# Si le fichier conf.ini est absent
 if not os.path.exists(fichier_conf):
     p = Principale(root, "", "", "", "", "non", 2)
     root.mainloop()
-    if p.valide == "oui":
+    if p.valide == "oui":  # La variable valide permet de détecter une annulation par l'utilisateur
 
         CreationFichierConf(p.entree, p.sortie, p.taille, p.doctype, p.config, p.rotation)
         Traitement(p.entree, p.sortie, p.doctype, p.taille, p.rotation)
@@ -274,14 +273,14 @@ if not os.path.exists(fichier_conf):
 else:
 
     lec = LectureConfig()
-    if lec.config == "non":
+    if lec.config == "non":  # Si le paramètre config du fichier conf.ini est non l'interface graphique est exécutée
         p = Principale(root, lec.path_in, lec.path_out, lec.taille, lec.doctype, lec.config, lec.rotation)
         root.mainloop()
-        if p.valide == "oui":
+        if p.valide == "oui":  # Détection de l'annulation par l'utilisateur
             CreationFichierConf(p.entree, p.sortie, p.taille, p.doctype, p.config, p.rotation)
             Traitement(p.entree, p.sortie, p.doctype, p.taille, p.rotation)
         else:
             print("Annulation par l'utilisateur")
-    else:
+    else:  # La variable config du fichier conf.ini est sur oui, l'exécution est silencieuse
         p = Principale(root, lec.path_in, lec.path_out, lec.taille, lec.doctype, lec.config, lec.rotation)
         Traitement(p.entree, p.sortie, p.doctype, p.taille, p.rotation)
