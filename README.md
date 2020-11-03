@@ -59,7 +59,7 @@ La première exécution du script affiche l'interface graphique de configuration
 
 - Le Dossier source est l'emplacement où se trouvent les fichiers à compresser.
 
-- Le Dossier cible est l'empcement ou seront stockés les fichiers compressés
+- Le Dossier cible est l'empcement où seront stockés les fichiers compressés
 
 - La taille en Mo est le seuil à partir duquel les fichiers seront compressés dans le dossier cible et supprimés du dossier source
 
