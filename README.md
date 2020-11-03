@@ -39,7 +39,7 @@ Créez un dossier portant le nom de votre choix, déposer les fichiers dans ce d
 _Le fichier d'aide en ligne_
 * conf.ini :            
 _un exemple de fichier de configuration (optionnel)_
-* Lancement.py :        
+* <strong>Lancement.py</strong> :        
 _Le programme principal_
 * principale.png :      
 _L'image de l'interface principale pour le fichier d'aide_
