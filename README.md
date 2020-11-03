@@ -3,12 +3,12 @@
 ## Table des matières
 
  1. [Description](#Description-)
- 2. [Technos]
- 3. [Installation]
- 4. [Utilisation]
- 5. [Fonctionalités]
- 6. [Auteur]
- 7. [Licence]
+ 2. [Technos](#Technos-)
+ 3. [Installation](#Installation-)
+ 4. [Utilisation](#Utilisation-)
+ 5. [Fonctionnalités](#Fonctionalités-)
+ 6. [Auteur](#Auteur-)
+ 7. [Licence](#Licence-)
 
 # Description :
 
