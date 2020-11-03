@@ -75,6 +75,8 @@ _Pour réinitialiser la configuration, et afficher le menu à nouveau, la syntax
 
 _<strong>Un fichier ZipLog.log est créé dans le dossier source, il contient la journalisation de l'activité du programme.</strong>_
 
+L'utilisateur exécutant le programme doit bénéficier de droits d'écriture dans le dossier source et le dossier cible.
+
 # Fonctionnalités 
 
 L'interface principale permet de configurer les options d'entrée, sortie, la taille, l'extension ainsi que la possibilité d'une exécution silencieuse :
