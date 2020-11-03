@@ -90,7 +90,7 @@ et cible, la présence d'une extension et les valeurs numériques du champ taill
 
 En mode silencieux, la fenêtre du résumé de la configuration change de couleur et passe au bleu :
 
-![image](https://user-images.githubusercontent.com/72203692/97610420-21490100-1a15-11eb-88cc-3d72861e54b2.png)
+![image](https://user-images.githubusercontent.com/72203692/98031603-027eac00-1e13-11eb-9b9c-a22fa4b2262c.png)
 
 # Auteur
 
