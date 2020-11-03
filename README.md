@@ -86,7 +86,7 @@ L'interface principale permet de configurer les options d'entrée, sortie, la ta
 Le bouton Modifier permet d'appliquer la configuration, si des erreurs sont détectées, un message contextuel permet de repérer la donnée entrée erronée et l'éxecution du programme n'est pas possible tant que les erreurs ne sont pas corrigées (bouton Exécuter inactif). 
 
 Des contrôles sont effectués sur l'existence des dossiers source
-et cible, la présence d'une extension et les valeurs numériques du champ taille et nombre de rotation :
+et cible, la présence d'une extension et les valeurs numériques du champ taille et nombre de rotations :
 
 ![image](https://user-images.githubusercontent.com/72203692/98030864-f2b29800-1e11-11eb-8b18-08127af09646.png)
 
