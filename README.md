@@ -14,7 +14,7 @@
 
 Ce script Python a pour fonction d'automatiser la gestion des fichiers journeaux de type log, txt, xml ou de toutes autres extensions qui parfois encombrent des espaces de stockage. L'interface graphique permet le paramètrage du type et de la taille des fichiers éligibles à la compression. Une fonction permet d'automatiser la tâche sans interaction permettant ainsi la planification de la tâche.
 
-![image](https://user-images.githubusercontent.com/72203692/97974642-2d8fde00-1dc8-11eb-8ac7-7f40bff0e30b.png)
+![image](https://user-images.githubusercontent.com/72203692/98028438-66eb3c80-1e0e-11eb-949a-ebbd3a83a91d.png)
 
 # Technos
 
