@@ -6,7 +6,7 @@
  2. [Technos](#Technos)
  3. [Installation](#Installation)
  4. [Utilisation](#Utilisation)
- 5. [Fonctionnalités](#Fonctionalités)
+ 5. [Fonctionnalités](#Fonctionnalités)
  6. [Auteur](#Auteur)
  7. [Licence](#Licence)
 
