@@ -57,9 +57,9 @@ pour lancer le progranmme :
 
 La première exécution du script affiche l'interface graphique de configuration :
 
-- Le Dossier source est l'emplacement où se trouvent les fichiers à compresser.
+- Le Dossier source est l'emplacement où se trouvent les fichiers à compresser, le script supporte des chemins UNC sous windows.
 
-- Le Dossier cible est l'emplacement où seront stockés les fichiers compressés.
+- Le Dossier cible est l'emplacement où seront stockés les fichiers compressés, le script supporte des chemins UNC sous windows.
 
 - La taille en Mo est le seuil à partir duquel les fichiers seront compressés dans le dossier cible et supprimés du dossier source.
 
@@ -79,11 +79,12 @@ L'utilisateur exécutant le programme doit bénéficier de droits d'écriture da
 
 # Fonctionnalités 
 
-L'interface principale permet de configurer les options d'entrée, sortie, la taille, l'extension ainsi que la possibilité d'une exécution silencieuse :
+L'interface principale permet de configurer les options d'entrée, sortie, la taille, l'extension, le nombre de fichiers archivés ainsi que la possibilité d'une exécution silencieuse :
 
 ![image](https://user-images.githubusercontent.com/72203692/98030488-5be5db80-1e11-11eb-9da5-c2c048d7d42c.png)
 
-Le bouton Modifier permet d'appliquer la configuration, si des erreurs sont détectées, un message contextuel permet de repérer la donnée entrée erronée et l'éxecution du programme n'est pas possible tant que les erreurs ne sont pas corrigées, le bouton exécuter reste inactif :
+Le bouton Modifier permet d'appliquer la configuration, si des erreurs sont détectées, un message contextuel permet de repérer la donnée entrée erronée et l'éxecution du programme n'est pas possible tant que les erreurs ne sont pas corrigées (bouton Exécuter inactif). Des contrôles sont effectués sur l'existence des dossiers source
+et cible, la présence d'une extension et les valeurs numériques du champ taille et nombre de rotation :
 
 ![image](https://user-images.githubusercontent.com/72203692/98030864-f2b29800-1e11-11eb-8b18-08127af09646.png)
 
