@@ -81,7 +81,7 @@ L'utilisateur exécutant le programme doit bénéficier de droits d'écriture da
 
 L'interface principale permet de configurer les options d'entrée, sortie, la taille, l'extension ainsi que la possibilité d'une exécution silencieuse :
 
-![image](https://user-images.githubusercontent.com/72203692/97609270-ac28fc00-1a13-11eb-8fff-297ef39a11e7.png)
+![image](https://user-images.githubusercontent.com/72203692/98030488-5be5db80-1e11-11eb-9da5-c2c048d7d42c.png)
 
 Le bouton Modifier permet d'appliquer la configuration, si des erreurs sont détectées, un message contextuel permet de repérer la donnée entrée erronée et l'éxecution du programme n'est pas possible tant que les erreurs ne sont pas corrigées, le bouton exécuter reste inactif :
 
