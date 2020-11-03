@@ -85,7 +85,7 @@ L'interface principale permet de configurer les options d'entrée, sortie, la ta
 
 Le bouton Modifier permet d'appliquer la configuration, si des erreurs sont détectées, un message contextuel permet de repérer la donnée entrée erronée et l'éxecution du programme n'est pas possible tant que les erreurs ne sont pas corrigées, le bouton exécuter reste inactif :
 
-![image](https://user-images.githubusercontent.com/72203692/97610031-a849a980-1a14-11eb-8a56-0fb55ac6bd3b.png)
+![image](https://user-images.githubusercontent.com/72203692/98030864-f2b29800-1e11-11eb-8b18-08127af09646.png)
 
 En mode silencieux, la fenêtre du résumé de la configuration change de couleur et passe au bleu :
 
