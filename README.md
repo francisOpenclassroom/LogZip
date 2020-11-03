@@ -67,11 +67,13 @@ La première exécution du script affiche l'interface graphique de configuration
 
 - L'exécution automatique permet de ne plus afficher l'interface graphique au prochain lancement permettant ainsi d'exécuter le programmme à partir d'un tâche planifiée.
 
-- Pour réinitialiser la configuration, et afficher le menu à nouveau, la syntaxe est la suivante :
+_Pour réinitialiser la configuration, et afficher le menu à nouveau, la syntaxe est la suivante :_
 
 `python lancement.py -reset`
 
-- Un fichier _ZipLog.log est créé dans le dossier source, il contient la journalisation de l'activité du programme.
+- Rotations est le nombre de versions de fichiers archivés à conserver, au minimum la version courante et une version archivée sont sauvegardé, valeur : 1.
+
+_<strong>Un fichier ZipLog.log est créé dans le dossier source, il contient la journalisation de l'activité du programme.</strong>_
 
 # Fonctionnalités 
 
