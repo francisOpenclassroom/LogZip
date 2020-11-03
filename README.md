@@ -83,7 +83,8 @@ L'interface principale permet de configurer les options d'entrée, sortie, la ta
 
 ![image](https://user-images.githubusercontent.com/72203692/98030488-5be5db80-1e11-11eb-9da5-c2c048d7d42c.png)
 
-Le bouton Modifier permet d'appliquer la configuration, si des erreurs sont détectées, un message contextuel permet de repérer la donnée entrée erronée et l'éxecution du programme n'est pas possible tant que les erreurs ne sont pas corrigées (bouton Exécuter inactif). Des contrôles sont effectués sur l'existence des dossiers source
+Le bouton Modifier permet d'appliquer la configuration, si des erreurs sont détectées, un message contextuel permet de repérer la donnée entrée erronée et l'éxecution du programme n'est pas possible tant que les erreurs ne sont pas corrigées (bouton Exécuter inactif). 
+Des contrôles sont effectués sur l'existence des dossiers source
 et cible, la présence d'une extension et les valeurs numériques du champ taille et nombre de rotation :
 
 ![image](https://user-images.githubusercontent.com/72203692/98030864-f2b29800-1e11-11eb-8b18-08127af09646.png)
