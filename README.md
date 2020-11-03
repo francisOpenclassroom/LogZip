@@ -65,7 +65,7 @@ La première exécution du script affiche l'interface graphique de configuration
 
 - L'extension est l'extension des fichiers (.log, .txt..., sans le '.' à traiter 
 
-- L'exécution automatique permet de ne plus afficher l'interface graphique au prochain lancement permettant ainsi d'exécuter le programmme à partir d'un tâche planifiée.
+- L'exécution automatique permet de ne plus afficher l'interface graphique au prochain lancement permettant ainsi d'exécuter le programmme à partir d'une tâche planifiée.
 
 _Pour réinitialiser la configuration, et afficher le menu à nouveau, la syntaxe est la suivante :_
 
