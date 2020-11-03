@@ -59,11 +59,11 @@ La première exécution du script affiche l'interface graphique de configuration
 
 - Le Dossier source est l'emplacement où se trouvent les fichiers à compresser.
 
-- Le Dossier cible est l'empcement où seront stockés les fichiers compressés
+- Le Dossier cible est l'emplacement où seront stockés les fichiers compressés.
 
-- La taille en Mo est le seuil à partir duquel les fichiers seront compressés dans le dossier cible et supprimés du dossier source
+- La taille en Mo est le seuil à partir duquel les fichiers seront compressés dans le dossier cible et supprimés du dossier source.
 
-- L'extension est l'extension des fichiers (.log, .txt..., sans le '.' à traiter 
+- L'extension est l'extension des fichiers (.log, .txt..., sans le '.') à traiter. 
 
 - L'exécution automatique permet de ne plus afficher l'interface graphique au prochain lancement permettant ainsi d'exécuter le programmme à partir d'une tâche planifiée.
 
