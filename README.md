@@ -31,6 +31,23 @@ Lien vers tkinter : https://docs.python.org/fr/3/library/tk.html
 
 Une version de Python 3 est nécessaire pour exécuter ce script, copier les fichiers lancement.py et ZipLogInterface.py dans un dossier. Les fichiers sont téléchargeables à l'adresse : https://github.com/francisOpenclassroom/LogZip.git
 
+Ce script a été développé avec la version 3.8.5 et devrait fonctionner avec toutes les versions 3.x de Python.
+
+Créez un dossier portant le nom de votre choix, déposer les fichiers dans ce dossier :
+
+* Aide_V1.html :   
+_Le fichier d'aide en ligne_
+* conf.ini :            
+_un exemple de fichier de configuration (optionnel)_
+* Lancement.py :        
+_Le programme principal_
+* principale.png :      
+_L'image de l'interface principale pour le fichier d'aide_
+* Z.ico :        
+_Le fichier image de l'icone de l'interface graphique_
+* ZiplogInterface.py :  
+_Le code du module graphique Tkinter_
+
 
 # Utilisation
 
