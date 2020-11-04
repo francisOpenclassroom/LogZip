@@ -1,5 +1,7 @@
 # Logique
 
+# Sommaire
+
  1. [Algorithme principal](#algorithme-principal-)
  2. [Algorithme du module graphique](#algorithme-du-module-graphique-)
  3. [Algorithme du code primaire](#algorithme-du-code-primaire-)
