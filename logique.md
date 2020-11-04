@@ -3,7 +3,7 @@
  1. [Algorithme principal](#algorithme-principal-)
  2. [Algorithme du module graphique](#algorithme-du-module-graphique-)
  3. [Algorithme du code primaire](#algorithme-du-code-primaire-)
- 4. [Algorithme de traitement](
+ 4. [Algorithme de traitement](#algorithme-de-traitement-)
 
 # Algorithme principal :
 
