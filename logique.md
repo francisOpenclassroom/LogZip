@@ -11,3 +11,7 @@
 # Algorithme du code primaire :
 
 ![image](https://user-images.githubusercontent.com/72203692/98163100-9c615a00-1ee2-11eb-9503-bedb454197a2.png)
+
+# Algorithme de traitement :
+
+![image](https://user-images.githubusercontent.com/72203692/98167615-aaff3f80-1ee9-11eb-9d11-a0cdff055d9a.png)
