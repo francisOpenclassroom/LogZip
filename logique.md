@@ -1,6 +1,6 @@
 # Logique
 
- 1. [Algorithme principal](#Algorithme principal :)
+ 1. [Algorithme principal](#Algorithme principal)
 
 # Algorithme principal :
 
