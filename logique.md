@@ -14,4 +14,4 @@
 
 # Algorithme de traitement :
 
-![image](https://user-images.githubusercontent.com/72203692/98167615-aaff3f80-1ee9-11eb-9d11-a0cdff055d9a.png)
+![image](https://user-images.githubusercontent.com/72203692/98168542-ffef8580-1eea-11eb-99c1-b65c88ed8430.png)
