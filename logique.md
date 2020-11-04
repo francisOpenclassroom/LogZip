@@ -1,6 +1,6 @@
 # Logique
 
-# Sommaire
+# Sommaire :
 
  1. [Algorithme principal](#algorithme-principal-)
  2. [Algorithme du module graphique](#algorithme-du-module-graphique-)
