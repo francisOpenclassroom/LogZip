@@ -100,7 +100,8 @@ La classe vérifie l'existence de fichiers ayant un nom identique à la racine d
 Pour ce faire, le nom des fichiers est généré par une boucle dans un dictionnaire et un test d'existence sur le nom du fichier exact est effectué dans le dossier cible. Si le fichier existe il est alors ajouté à une liste Python list.fic par itération.
 Si le nombre d'éléments dans la liste est nul, le nom de fichier est alors envoyé à la fonction Zip_it() avec la racine du nom et l'extension .zip.
 Si le nombre d'éléments dans la liste est supérieur à 0 le nom de fichier est envoyé à la fonction Zip_it() dans une boucle qui renomme le fichier d'indice -1 en fichier d'indice en commençant par la fin de la liste.
-Exemple :
+
+Exemple :  
 le nombre de rotations est fixé à 3, le nom du fichier est fichier :
 - Présence d'aucun fichier : le fichier est enregistré sous fichier.zip
 - présence dun fichier : le fichier fichier.zip est renommé fichier_1.zip, le nouveau fichier est enregistré sous fichier.zip
