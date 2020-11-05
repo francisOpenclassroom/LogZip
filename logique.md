@@ -80,7 +80,7 @@ Le bouton modifier prend alors en charge la mise à jour des données via la fon
 
 Le bouton exécuter sort de la boucle graphique et retourne dans le code principal les variables du dossier source et cible, de l’extension et de la taille des fichiers, du nombre de rotations ainsi que oui ou non de la directive config.
 
-Le bouton d'aidre (?) afficher un fichier de type HTML d'aide à l'aide d'une fonction lambda.
+Le bouton d'aide (?) affiche dans le navigateur par défaut un fichier de type HTML d'aide (fonction lambda).
 
 
 
