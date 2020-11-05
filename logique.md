@@ -34,13 +34,20 @@ On entre alors dans une boucle tkinter, une variable self.valide permet de déte
 
 Si la variable self.valide retournée est "oui" la création et le traitement sont effectués, si "non" est retourné l'exécution du programme est interrompue.  
 
-Si le fichier conf.ini est présent, les données de ce fichier sont lues par la classe LectureConfig, si la directive config du fichier est oui la classe Principale est exécutée sans boucle graphique et ensuite la classe Traitement.
+Si le fichier conf.ini est présent, les données de ce fichier sont lues par la classe LectureConfig et intégrées dans un dictionnaire Python, si la directive config du fichier est oui la classe Principale est exécutée sans boucle graphique et ensuite la classe Traitement.
 Si la directive config est non, la classe Principale est exécutée dans une boucle graphique et suit le même schéma d'exécution que lorsque le fichier conf.ini est absent, le fichier conf.ini est alors recréé avec les nouvelles informations de sortie.
 
 
 ![image](https://user-images.githubusercontent.com/72203692/98155179-1dfebb00-1ed6-11eb-96ab-c6a4773c36cf.png)
 
 # Algorithme du module graphique :
+
+Le module graphique ZipLogInterface.py prend en charge la saisie et la validation des données entrées par l'utilisateur. Le constructeur de la classe Principale met en place l'intégralité des éléments graphiques Tkinter, les zones de saisie, les boutons générant les actions ainsi que les éléments de texte.
+Les boutons Parcourir exécute une fonction opendir_in() et opendir_out() respectivement qui s'appuie sur la méthode filedialog.askdirectory de Tkinter faisant appel à un explorateur de fichier du système d'exploitation qui se substitue alors à la zone de saisie manuelle du dossier source et cible assurée par des widgets Entry.
+
+Le bouton Annuler exécute la fonction annuler() qui se charge de sortir de la boucle graphique et de modifier la variable self.valide à "non".
+
+
 
 ![image](https://user-images.githubusercontent.com/72203692/98159861-95841880-1edd-11eb-805e-d7ae3c623b09.png)
 
