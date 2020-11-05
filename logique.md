@@ -33,8 +33,9 @@ Si le fichier conf.ini n'existe pas dans le répertoire courant on exécute la c
 On entre alors dans une boucle tkinter, une variable self.valide permet de détecter un click sur le bouton annuler et sert alors de condition lors de la sortie de la boucle graphique à l'exécution de la creation du fichier de configuration par la classe CreationFichierConf et le traitement des fichiers par la classe Traitement.
 
 Si la variable self.valide retournée est "oui" la création et le traitement sont effectués, si "non" est retourné l'exécution du programme est interrompue.  
-Lignes 264 à 272 du script Lancement.py
 
+Si le fichier conf.ini est présent, les données sont lues par la classe LectureConfig, si la directive config du fichier est oui la classe Principale est exécutée sans boucle graphique et ensuite la classe Traitement.
+Si la directive config est non, la classe Principale est exécutée dans une boucle graphique et suit le mêm schéma d'exécution que lorsque le fichier conf.ini est absent, le fichier conf.ini est alors recréé avec les nouvelles informations de sortie.
 
 
 ![image](https://user-images.githubusercontent.com/72203692/98155179-1dfebb00-1ed6-11eb-96ab-c6a4773c36cf.png)
