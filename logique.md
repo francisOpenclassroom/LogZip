@@ -34,7 +34,7 @@ On entre alors dans une boucle tkinter, une variable self.valide permet de déte
 
 Si la variable self.valide retournée est "oui" la création et le traitement sont effectués, si "non" est retourné l'exécution du programme est interrompue.  
 
-Si le fichier conf.ini est présent, les données sont lues par la classe LectureConfig, si la directive config du fichier est oui la classe Principale est exécutée sans boucle graphique et ensuite la classe Traitement.
+Si le fichier conf.ini est présent, les données de ce fichier sont lues par la classe LectureConfig, si la directive config du fichier est oui la classe Principale est exécutée sans boucle graphique et ensuite la classe Traitement.
 Si la directive config est non, la classe Principale est exécutée dans une boucle graphique et suit le mêm schéma d'exécution que lorsque le fichier conf.ini est absent, le fichier conf.ini est alors recréé avec les nouvelles informations de sortie.
 
 
