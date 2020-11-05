@@ -88,3 +88,11 @@ Le bouton d'aide (?) affiche dans le navigateur par défaut un fichier de type H
 
 ![image](https://user-images.githubusercontent.com/72203692/98169476-96707680-1eec-11eb-8431-86fa638aa76d.png)
 
+Il se situe dans le code principal Lancement.py, les variables issues du fichier conf.ini ou de la saisie utilisateur comme vu ci-dessus sont exploitées pour :
+
+- Compresser les fichiers source dans la cible
+- Supprimmer les fichiers à la source
+- Effectuer une rotation des fichiers archivés
+- Créer ou modifier le fichier conf.ini
+
+
