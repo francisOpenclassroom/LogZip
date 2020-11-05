@@ -6,8 +6,7 @@
 
  1. [Algorithme principal](#algorithme-principal-)
  2. [Algorithme du module graphique](#algorithme-du-module-graphique-)
- 3. [Algorithme du code primaire](#algorithme-du-code-primaire-)
- 4. [Algorithme de traitement](#algorithme-de-traitement-)
+ 3. [Algorithme de traitement](#algorithme-de-traitement-)
 
 # Algorithme principal :
 
@@ -84,11 +83,6 @@ Le bouton exécuter sort de la boucle graphique et retourne dans le code princip
 Le bouton d'aidre (?) afficher un fichier de type HTML d'aide à l'aide d'une fonction lambda.
 
 
-
-
-# Algorithme du code primaire :
-
-![image](https://user-images.githubusercontent.com/72203692/98163100-9c615a00-1ee2-11eb-9503-bedb454197a2.png)
 
 # Algorithme de traitement :
 
