@@ -95,4 +95,20 @@ Il se situe dans le code principal Lancement.py, les variables issues du fichier
 - Effectuer une rotation des fichiers archivés
 - Créer ou modifier le fichier conf.ini
 
+La recherche des fichiers à traiter est assurée par la méthode os.walk(), une condition permet d'éviter une récursivité dans le dossier source (len(dossiers), les fichiers répondant aux conditions des variables d'extension et de taille sont alors traités dans un premier temps par une classe RotationFic.
+La classe vérifie l'existence de fichiers ayant un nom identique à la racine du fichier et d'indice de type _i ou i est le nombre de rotations passé à la classe.
+Pour ce faire, le nom des fichiers est généré par une boucle dans un dictionnaire et un test d'existence sur le nom du fichier exact est effectué dans le dossier cible. Si le fichier existe il est alors ajouté à une liste Python list.fic par itération.
+Si le nombre d'éléments dans la liste est nul, le nom de fichier est alors envoyé à la fonction Zip_it() avec la racine du nom et l'extension .zip.
+Si le nombre d'éléments dans la liste est supérieur à 0 le nom de fichier est envoyé à la fonction Zip_it() dans une boucle qui renomme le fichier d'indice -1 en fichier d'indice en commençant par la fin de la liste.
+Exemple :
+le nombre de rotations est fixé à 3, le nom du fichier est fichier :
+- Présence d'aucun fichier : le fichier est enregistré sous fichier.zip
+- présence dun fichier : le fichier fichier.zip est renommé fichier_1.zip, le nouveau fichier est enregistré sous fichier.zip
+- présence de deux fichiers : le fichier fichier_1.zip est renommé fichier_2.zip, le fichier fichier.zip est renommé fichier_1.zip, le nouveau fichier est enregistré sour fichier.zip
+- présence de trois fichiers : fichier_2.zip -> fichier_3.zip, fichier_1.zip -> fichier_2.zip, fichier.zip -> fichier_1.zip, + nouveau fichier.zip
+- présence de quatre fichiers (3 rétentions + en cours ) : fichier_2 écrase fichier_3, fichier_1 -> fichier_2, fichier -> fichier_1 + nouveau fichier.
+
+
+
+
 
