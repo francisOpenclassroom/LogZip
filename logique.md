@@ -49,6 +49,28 @@ Les boutons Parcourir exécutent une fonction opendir_in() et opendir_out() resp
 
 Le bouton Annuler exécute la fonction annuler() qui se charge de sortir de la boucle graphique et de modifier la variable self.valide à "non".
 
+La  saisie de la taille des fichiers, l’extension et le nombre de rotations est assurée par des widgets de type Entry. Le choix d’exécution automatique par un widget Checkbutton.  
+Les boutons sont des widgets de type Button.  
+Le bouton Appliquer exécute la fonction get_entry(), cette fonction se charge de récupérer les valeurs entrées dans les champs de saisie de type Entry, de la méthode filedialog.askdirectory ainsi que Checkbutton par des méthodes get(). Cette même fonction get_entry() appelle dans un premier temps une autre fonction maj_list().   
+
+La fonction maj_list() utilise une liste Python liste_valeur pour stocker les éléments saisis par l’utilisateur afin de permettre un échange entre les autres fonctions utilisées pour les modifier et les contextualiser.
+
+La fonction affiche_resultat() est ensuite exécutée. A l’intérieur de cette dernière, une fonction de validation de la saisie validation() est exécutée dans un premier temps et gère les conditions suivantes :
+
+Existence du dossier source et du dossier cible
+Existence de la saisie d’une extension 
+Les nombres saisis dans la taille et le nombre de rotations doivent être des entiers supérieurs à 0
+Les conditions retournent une valeur booléenne et modifient le contenu de la liste liste_valeur pour contextualiser les messages d’erreur.
+
+De plus, tant que toutes les conditions ne sont pas remplies (valeur booléennes False) le bouton Exécuter est rendu inactif par une modification de l’état du widget Button à  disabled ainsi que la modification de la couleur du panneau de résumé.
+
+Les données de cette liste sont alors affichées par la fonction affiche_resultat() à l’aide d’une boucle, le bouton Appliquer est détruit et remplacé par un bouton modifier, le bouton Exécuter est quant à lui actif ou inactif selon l’état des conditions ce qui garantit une exécution du traitement uniquement lorsque toutes les données sont valides.
+
+Le bouton modifier prend alors en charge la mise à jour des données via la fonction mise_a_jour() qui lit et insère les nouvelles valeurs des variables. Cette fonction boucle alors avec la fonction affiche_resultat() jusqu’à l’utilisation d’un autre bouton (Annuler ou Exécuter).
+
+Le bouton exécuter sort de la boucle graphique et retourne dans le code principal les variables du dossier source et cible, de l’extension et de la taille des fichiers, du nombre de rotations ainsi que oui ou non de la directive config.
+
+
 
 
 ![image](https://user-images.githubusercontent.com/72203692/98159861-95841880-1edd-11eb-805e-d7ae3c623b09.png)
