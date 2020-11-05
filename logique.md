@@ -1,5 +1,6 @@
 # Logique
 
+![image](https://user-images.githubusercontent.com/72203692/98155179-1dfebb00-1ed6-11eb-96ab-c6a4773c36cf.png)
 
 # Sommaire :
 
@@ -38,7 +39,10 @@ Si le fichier conf.ini est présent, les données de ce fichier sont lues par la
 Si la directive config est non, la classe Principale est exécutée dans une boucle graphique et suit le même schéma d'exécution que lorsque le fichier conf.ini est absent, le fichier conf.ini est alors recréé avec les nouvelles informations de sortie.
 
 
-![image](https://user-images.githubusercontent.com/72203692/98155179-1dfebb00-1ed6-11eb-96ab-c6a4773c36cf.png)
+![image](https://user-images.githubusercontent.com/72203692/98163100-9c615a00-1ee2-11eb-9503-bedb454197a2.png)
+
+
+
 
 # Algorithme du module graphique :
 
