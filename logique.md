@@ -109,7 +109,9 @@ le nombre de rotations est fixé à 3, le nom du fichier est fichier :
 - présence de trois fichiers : fichier_2.zip -> fichier_3.zip, fichier_1.zip -> fichier_2.zip, fichier.zip -> fichier_1.zip, + nouveau fichier.zip
 - présence de quatre fichiers (3 rétentions + en cours ) : fichier_2 écrase fichier_3, fichier_1 -> fichier_2, fichier -> fichier_1 + nouveau fichier.
 
+Le traitement se pousuit ensuite dans une classe FichierLog qui enregistre l'activité avec un habillage de la date, du nombre de fichiers et le pourcentage de compression dans un fichier _Ziplog.log dans le dossier source.
 
+Enfin, les nouveaux fichiers sont enregistrés à la cible avec le module zipfile dans une boucle itérative.
 
 
 
