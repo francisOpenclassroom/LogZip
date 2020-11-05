@@ -60,7 +60,7 @@ La fonction affiche_resultat() est ensuite exécutée. A l’intérieur de cette
 - Existence du dossier source et du dossier cible
 - Existence de la saisie d’une extension 
 - Les nombres saisis dans la taille et le nombre de rotations doivent être des entiers supérieurs à 0
-- Les conditions retournent une valeur booléenne et modifient le contenu de la liste liste_valeur pour contextualiser les messages d’erreur.
+Les conditions retournent une valeur booléenne et modifient le contenu de la liste liste_valeur pour contextualiser les messages d’erreur.
 
 De plus, tant que toutes les conditions ne sont pas remplies (valeur booléennes False) le bouton Exécuter est rendu inactif par une modification de l’état du widget Button à  disabled ainsi que la modification de la couleur du panneau de résumé.
 
