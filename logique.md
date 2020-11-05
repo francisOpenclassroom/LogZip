@@ -11,6 +11,9 @@
 
 # Algorithme principal :
 
+
+![image](https://user-images.githubusercontent.com/72203692/98163100-9c615a00-1ee2-11eb-9503-bedb454197a2.png)
+
 Le script est structuré de la manière suivante :
 
 Un script principal Lancement.py et un module graphique ZipLogInterface.py
@@ -39,12 +42,15 @@ Si le fichier conf.ini est présent, les données de ce fichier sont lues par la
 Si la directive config est non, la classe Principale est exécutée dans une boucle graphique et suit le même schéma d'exécution que lorsque le fichier conf.ini est absent, le fichier conf.ini est alors recréé avec les nouvelles informations de sortie.
 
 
-![image](https://user-images.githubusercontent.com/72203692/98163100-9c615a00-1ee2-11eb-9503-bedb454197a2.png)
+
 
 
 
 
 # Algorithme du module graphique :
+
+![image](https://user-images.githubusercontent.com/72203692/98159861-95841880-1edd-11eb-805e-d7ae3c623b09.png)
+
 
 ![image](https://user-images.githubusercontent.com/72203692/98028438-66eb3c80-1e0e-11eb-949a-ebbd3a83a91d.png)
 
@@ -78,7 +84,7 @@ Le bouton exécuter sort de la boucle graphique et retourne dans le code princip
 Le bouton d'aidre (?) afficher un fichier de type HTML d'aide à l'aide d'une fonction lambda.
 
 
-![image](https://user-images.githubusercontent.com/72203692/98159861-95841880-1edd-11eb-805e-d7ae3c623b09.png)
+
 
 # Algorithme du code primaire :
 
