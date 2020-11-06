@@ -1,6 +1,5 @@
 # Logique V1
 
-![image](https://user-images.githubusercontent.com/72203692/98155179-1dfebb00-1ed6-11eb-96ab-c6a4773c36cf.png)
 
 # Sommaire :
 
@@ -11,7 +10,7 @@
 # Algorithme principal :
 
 
-![image](https://user-images.githubusercontent.com/72203692/98163100-9c615a00-1ee2-11eb-9503-bedb454197a2.png)
+![image](https://user-images.githubusercontent.com/72203692/98408209-158eb780-2071-11eb-8728-f2f374503636.png)
 
 Le script est structuré de la manière suivante :
 
@@ -48,10 +47,10 @@ Si la directive config est non, la classe Principale est exécutée dans une bou
 
 # Algorithme du module graphique :
 
-![image](https://user-images.githubusercontent.com/72203692/98159861-95841880-1edd-11eb-805e-d7ae3c623b09.png)
+![image](https://user-images.githubusercontent.com/72203692/98413649-46271f00-207a-11eb-8a3e-ea7e5c73fa32.png)
 
 
-![image](https://user-images.githubusercontent.com/72203692/98028438-66eb3c80-1e0e-11eb-949a-ebbd3a83a91d.png)
+
 
 Le module graphique ZipLogInterface.py prend en charge la saisie et la validation des données entrées par l'utilisateur. Le constructeur de la classe Principale met en place l'intégralité des éléments graphiques Tkinter, les zones de saisie, les boutons générant les actions ainsi que les éléments de texte.
 Les boutons Parcourir exécutent une fonction opendir_in() et opendir_out() respectivement qui s'appuie sur la méthode filedialog.askdirectory de Tkinter faisant appel à un explorateur de fichier du système d'exploitation qui se substitue alors à la zone de saisie manuelle du dossier source et cible assurée par des widgets Entry.
