@@ -5,7 +5,6 @@ import os
 root = Tk()
 root.title("ZipLogGui")
 root.geometry("800x400")
-root.iconbitmap("z.ico")
 
 
 class Principale:

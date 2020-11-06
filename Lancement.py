@@ -250,7 +250,7 @@ class Traitement:
 # reinitialisation si le programme est lancé avec l'option -reset -> Suppression du fichier conf.ini
 if len(sys.argv) > 1:
     if sys.argv[1] == "-reset":
-        print("Configuration initialisée")
+        print("Configuration réinitialisée")
         while True:
             try:
                 os.remove(fichier_conf)
@@ -262,6 +262,7 @@ if len(sys.argv) > 1:
 
 # Si le fichier conf.ini est absent
 if not os.path.exists(fichier_conf):
+    root.iconbitmap("z.ico")
     p = Principale(root, "", "", "", "", "non", 2)
     root.mainloop()
     if p.valide == "oui":  # La variable valide permet de détecter une annulation par l'utilisateur
@@ -274,6 +275,7 @@ else:
 
     lec = LectureConfig()
     if lec.config == "non":  # Si le paramètre config du fichier conf.ini est non l'interface graphique est exécutée
+        root.iconbitmap("z.ico")
         p = Principale(root, lec.path_in, lec.path_out, lec.taille, lec.doctype, lec.config, lec.rotation)
         root.mainloop()
         if p.valide == "oui":  # Détection de l'annulation par l'utilisateur
@@ -282,5 +284,4 @@ else:
         else:
             print("Annulation par l'utilisateur")
     else:  # La variable config du fichier conf.ini est sur oui, l'exécution est silencieuse
-        p = Principale(root, lec.path_in, lec.path_out, lec.taille, lec.doctype, lec.config, lec.rotation)
-        Traitement(p.entree, p.sortie, p.doctype, p.taille, p.rotation)
+        Traitement(lec.path_in, lec.path_out, lec.doctype, lec.taille, lec.rotation)
