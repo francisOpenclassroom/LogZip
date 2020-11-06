@@ -1,6 +1,5 @@
 # Logique V1
 
-![image](https://user-images.githubusercontent.com/72203692/98408209-158eb780-2071-11eb-8728-f2f374503636.png)
 
 # Sommaire :
 
@@ -11,7 +10,7 @@
 # Algorithme principal :
 
 
-![image](https://user-images.githubusercontent.com/72203692/98163100-9c615a00-1ee2-11eb-9503-bedb454197a2.png)
+![image](https://user-images.githubusercontent.com/72203692/98408209-158eb780-2071-11eb-8728-f2f374503636.png)
 
 Le script est structuré de la manière suivante :
 
