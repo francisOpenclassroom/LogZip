@@ -1,6 +1,6 @@
 # Logique V1
 
-![image](https://user-images.githubusercontent.com/72203692/98155179-1dfebb00-1ed6-11eb-96ab-c6a4773c36cf.png)
+![image](https://user-images.githubusercontent.com/72203692/98408209-158eb780-2071-11eb-8728-f2f374503636.png)
 
 # Sommaire :
 
