@@ -258,6 +258,8 @@ if len(sys.argv) > 1:
             except FileNotFoundError:
                 quit()
 
+#                                           CODE PRINCIPAL DE LANCEMENT
+
 # test de l'existence du fichier conf.ini pour déterminer quel module doit être exécuté
 
 # Si le fichier conf.ini est absent
@@ -274,14 +276,14 @@ if not os.path.exists(fichier_conf):
 else:
 
     lec = LectureConfig()
-    if lec.config == "non":  # Si le paramètre config du fichier conf.ini est non l'interface graphique est exécutée
+    if lec.config == "non":  # Si la directive config du fichier conf.ini est non l'interface graphique est exécutée
         root.iconbitmap("z.ico")
         p = Principale(root, lec.path_in, lec.path_out, lec.taille, lec.doctype, lec.config, lec.rotation)
         root.mainloop()
-        if p.valide == "oui":  # Détection de l'annulation par l'utilisateur
+        if p.valide == "oui":  # Confirmation de l'utilisateur (le bouton Annuler n'est pas cliqué)
             CreationFichierConf(p.entree, p.sortie, p.taille, p.doctype, p.config, p.rotation)
             Traitement(p.entree, p.sortie, p.doctype, p.taille, p.rotation)
-        else:
+        else:  # Le bouton annuler est cliqué la variable p.valide n'est plus oui
             print("Annulation par l'utilisateur")
-    else:  # La variable config du fichier conf.ini est sur oui, l'exécution est silencieuse
+    else:  # La directive config du fichier conf.ini est oui, l'exécution est silencieuse
         Traitement(lec.path_in, lec.path_out, lec.doctype, lec.taille, lec.rotation)

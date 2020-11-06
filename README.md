@@ -2,7 +2,7 @@
 
 ## Table des matières
 
- 1. [Description](#Description-)
+ 1. [Description](#Description)
  2. [Technos](#Technos)
  3. [Installation](#Installation)
  4. [Utilisation](#Utilisation)
@@ -10,7 +10,7 @@
  6. [Auteur](#Auteur)
  7. [Licence](#Licence)
 
-# Description :
+# Description
 
 Ce script Python a pour fonction d'automatiser la gestion des fichiers journaux de type log, txt... ou de toutes autres extensions qui parfois encombrent des espaces de stockage. L'interface graphique permet le paramètrage du type et de la taille des fichiers éligibles à la compression. Une fonction permet d'automatiser la tâche sans interaction permettant ainsi la planification de la tâche.
 
