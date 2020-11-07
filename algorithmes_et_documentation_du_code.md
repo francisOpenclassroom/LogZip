@@ -85,7 +85,7 @@ Le bouton d'aide (?) affiche dans le navigateur par défaut un fichier de type H
 
 # Algorithme de traitement :
 
-![image](https://user-images.githubusercontent.com/72203692/98169476-96707680-1eec-11eb-8431-86fa638aa76d.png)
+![image](https://user-images.githubusercontent.com/72203692/98434333-f58de100-20ce-11eb-862b-cc0adaad5769.png)
 
 Il se situe dans le code principal Lancement.py, les variables issues du fichier conf.ini ou de la saisie utilisateur comme vu ci-dessus sont exploitées pour :
 
