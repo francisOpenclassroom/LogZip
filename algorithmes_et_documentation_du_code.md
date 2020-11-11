@@ -10,7 +10,7 @@
 # Algorithme principal :
 
 
-![image](https://user-images.githubusercontent.com/72203692/98434455-0ee35d00-20d0-11eb-8ed9-25642c6b1c61.png)
+![image](https://user-images.githubusercontent.com/72203692/98159861-95841880-1edd-11eb-805e-d7ae3c623b09.png)
 
 Le script est structuré de la manière suivante :
 
